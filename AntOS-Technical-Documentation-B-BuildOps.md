@@ -171,7 +171,7 @@ Version metadata is read from `CurrentVesion.json`:
   "Version": "1.0.0",
   "OSName": "AntOS",
   "BuildVersion": 1,
-  "ReleaseDate": "2024-08-25"
+  "ReleaseDate": "2026-08-25"
 }
 ```
 
@@ -429,7 +429,7 @@ Default to `standard` unless DMI/DT clearly reports `embedded` or `pico`. This p
   "Version": "1.0.0",
   "OSName": "AntOS",
   "BuildVersion": 1,
-  "ReleaseDate": "2024-08-25"
+  "ReleaseDate": "2026-08-25"
 }
 ```
 
