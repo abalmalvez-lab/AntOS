@@ -15,15 +15,19 @@ AntOS is built as a **bootable container image** that is converted to a **qcow2 
 
 ```mermaid
 flowchart LR
-    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:20
-    classDef process fill:#4361ee,stroke:#3a56d4,color:#fff,rx:10
-    classDef artifact fill:#00b4d8,stroke:#0096c7,color:#fff,rx:10
-    classDef success fill:#2ecc71,stroke:#27ae60,color:#fff,rx:10
+    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
+    classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
+    classDef artifact fill:#00b4d8,stroke:#0096c7,color:#fff
+    classDef success fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    cf([Containerfile]):::terminal -->|podman build| ci(Container Image):::process
-    ci -->|bootc-image-builder| qcow2(qcow2 Disk Image):::artifact
-    qcow2 -->|run-qemu.sh| qemu(QEMU Boot):::process
-    qemu --> gates([Phase Gate Scripts]):::success
+    cf([Containerfile]) -->|podman build| ci(Container Image)
+    ci -->|bootc-image-builder| qcow2(qcow2 Disk Image)
+    qcow2 -->|run-qemu.sh| qemu(QEMU Boot)
+    qemu --> gates([Phase Gate Scripts])
+    class cf terminal
+    class ci,qemu process
+    class qcow2 artifact
+    class gates success
 ```
 
 ### Key artifacts
