@@ -52,7 +52,8 @@ These principles are binding on every implementation decision.
 AntOS treats the OS as a **trusted transport fabric for intelligence**. Every flow between user, AI, and OS passes through defined, observable interfaces.
 
 ```mermaid
-flowchart LR
+%%{init: {"flowchart": {"useMaxWidth": true}}}%%
+flowchart TD
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef intent fill:#4361ee,stroke:#3a56d4,color:#fff
     classDef context fill:#00b4d8,stroke:#0096c7,color:#fff
@@ -96,6 +97,7 @@ flowchart LR
 ## 3. System Architecture
 
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": true}}}%%
 flowchart TD
     classDef shellLayer fill:#7209b7,stroke:#560bad,color:#fff
     classDef uxLayer fill:#b5179e,stroke:#9b1160,color:#fff
@@ -192,6 +194,7 @@ The stack is strictly layered - each layer may only depend on layers below it. T
 The **only path** from intelligence and automation to privileged OS actions.
 
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": true}}}%%
 flowchart LR
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef gate fill:#f39c12,stroke:#d68910,color:#fff
@@ -296,6 +299,7 @@ Event Bus, Context Engine, Timeline, Backup, Update Intelligence, Energy Managem
 ## 8. Atomic Updates & Rollback
 
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": true}}}%%
 flowchart LR
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
@@ -372,6 +376,7 @@ flowchart LR
 ## 11. Build & Development Pipeline
 
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": true}}}%%
 flowchart LR
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
