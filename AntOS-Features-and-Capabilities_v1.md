@@ -61,20 +61,20 @@ flowchart TD
     classDef action fill:#f39c12,stroke:#d68910,color:#fff
     classDef knowledge fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    subgraph P1["Intent Transport"]
-        I1([User Goal]) --> I2(Intent Resolver)
+    subgraph P1["Intent<br/>Transport"]
+        I1([User Goal]) --> I2(Intent<br/>Resolver)
     end
-    subgraph P2["Context Transport"]
-        C1([Authorized Data]) --> C2(Context Engine)
+    subgraph P2["Context<br/>Transport"]
+        C1([Authorized<br/>Data]) --> C2(Context Engine)
     end
-    subgraph P3["Event Transport"]
+    subgraph P3["Event<br/>Transport"]
         E1([System Events]) --> E2(Event Bus)
     end
-    subgraph P4["Action Transport"]
-        A1([Authorized Action]) --> A2(Secure Action Gateway)
+    subgraph P4["Action<br/>Transport"]
+        A1([Authorized<br/>Action]) --> A2(Secure Action<br/>Gateway)
     end
-    subgraph P5["Knowledge Transport"]
-        K1([Search + Timeline]) --> K2(Knowledge Layer)
+    subgraph P5["Knowledge<br/>Transport"]
+        K1([Search<br/>Timeline]) --> K2(Knowledge<br/>Layer)
     end
     class I1,C1,E1,A1,K1 terminal
     class I2 intent
@@ -112,29 +112,29 @@ flowchart TD
     subgraph S1["AntOS Shell"]
         S["Desktop<br/>Workspaces<br/>Command Center<br/>Panels<br/>Notifications"]
     end
-    subgraph S2["User Experience Services"]
-        U["Search<br/>Timeline<br/>Clipboard<br/>Settings<br/>Files<br/>Accessibility"]
+    subgraph S2["User<br/>Experience<br/>Services"]
+        U["Search<br/>Timeline<br/>Clipboard<br/>Settings Files<br/>Accessibility"]
     end
-    subgraph S3["System Intelligence Layer"]
-        A["Context<br/>AI Router<br/>Reasoning<br/>Agents<br/>Predictions<br/>RCA"]
+    subgraph S3["System<br/>Intelligence<br/>Layer"]
+        A["Context AI<br/>Router<br/>Reasoning<br/>Agents<br/>Predictions<br/>RCA"]
     end
-    subgraph S4["Secure Action Gateway"]
-        G["Capability<br/>Policy<br/>Consent<br/>Impact<br/>Audit<br/>Undo"]
+    subgraph S4["Secure Action<br/>Gateway"]
+        G["Capability<br/>Policy Consent<br/>Impact Audit<br/>Undo"]
     end
-    subgraph S5["AntOS Core Services"]
+    subgraph S5["AntOS Core<br/>Services"]
         C["Health<br/>Security<br/>Network<br/>Devices<br/>Automation<br/>Knowledge"]
     end
     subgraph S6["Application<br/>Agent Sandbox"]
-        X["Flatpak<br/>Portals<br/>Rootless Containers<br/>Agent Capabilities"]
+        X["Flatpak<br/>Portals<br/>Rootless<br/>Containers<br/>Agent<br/>Capabilities"]
     end
     subgraph S7["OS Services"]
-        O["systemd<br/>NetworkManager<br/>PipeWire<br/>BlueZ<br/>D-Bus"]
+        O["systemd<br/>NetworkManager<br/>PipeWire BlueZ<br/>D-Bus"]
     end
     subgraph S8["Atomic<br/>Image-Based OS"]
-        T["Updates<br/>Deployments<br/>Recovery<br/>Btrfs<br/>Boot"]
+        T["Updates<br/>Deployments<br/>Recovery Btrfs<br/>Boot"]
     end
     subgraph S9["Linux Kernel"]
-        K["CPU<br/>Memory<br/>GPU<br/>Storage<br/>Network<br/>USB<br/>Input"]
+        K["CPU Memory GPU<br/>Storage<br/>Network USB<br/>Input"]
     end
 
     S --> U --> A --> G --> C --> X --> O --> T --> K
@@ -202,13 +202,13 @@ flowchart TD
     classDef success fill:#2ecc71,stroke:#27ae60,color:#fff
     classDef danger fill:#e74c3c,stroke:#c0392b,color:#fff
 
-    req([Action Request]) --> cap(Capability Check)
+    req([Action Request]) --> cap(Capability<br/>Check)
     cap --> pol{Policy Match}
     pol -->|Allow| con(Consent Check)
-    pol -->|Deny| blocked([Blocked + Audited])
+    pol -->|Deny| blocked([Blocked<br/>Audited])
     con --> imp(Impact Preview)
     imp --> aud(Audit Log)
-    aud --> exec([Execute + Undo Ready])
+    aud --> exec([Execute<br/>Undo Ready])
     class req terminal
     class cap,con,imp,aud gate
     class pol decision
@@ -307,12 +307,12 @@ flowchart TD
     classDef success fill:#2ecc71,stroke:#27ae60,color:#fff
     classDef danger fill:#e74c3c,stroke:#c0392b,color:#fff
 
-    new([New Image]) --> deploy(Deploy as B Entry)
+    new([New Image]) --> deploy(Deploy as B<br/>Entry)
     deploy --> boot(Boot New Entry)
     boot --> health{Health Check}
     health -->|Pass| active([Set Default])
-    health -->|Fail| rollback(Auto-Fallback to A)
-    rollback --> prev([Previous Entry Boots])
+    health -->|Fail| rollback(Auto-Fallback<br/>to A)
+    rollback --> prev([Previous Entry<br/>Boots])
     class new terminal
     class deploy,boot process
     class health decision
@@ -383,10 +383,10 @@ flowchart TD
     classDef artifact fill:#00b4d8,stroke:#0096c7,color:#fff
     classDef success fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    cf([Containerfile]) -->|podman build| ci(Container Image)
-    ci -->|bootc-image-builder| qcow2(qcow2 Disk Image)
+    cf([Containerfile]) -->|podman build| ci(Container<br/>Image)
+    ci -->|bootc-image-builder| qcow2(qcow2 Disk<br/>Image)
     qcow2 -->|run-qemu.sh| qemu(QEMU Boot)
-    qemu --> gates([Phase Gate Scripts])
+    qemu --> gates([Phase Gate<br/>Scripts])
     class cf terminal
     class ci,qemu process
     class qcow2 artifact
