@@ -78,7 +78,7 @@ Carries user goals into structured system requests.
 
 ```mermaid
 %%{init: {"flowchart": {"useMaxWidth": true}}}%%
-flowchart LR
+flowchart TD
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
     classDef gateway fill:#f39c12,stroke:#d68910,color:#fff
@@ -105,7 +105,7 @@ Moves structured system, device, security, and infrastructure events.
 
 ```mermaid
 %%{init: {"flowchart": {"useMaxWidth": true}}}%%
-flowchart LR
+flowchart TD
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef process fill:#00b4d8,stroke:#0096c7,color:#fff
     classDef engine fill:#9b59b6,stroke:#8e44ad,color:#fff
