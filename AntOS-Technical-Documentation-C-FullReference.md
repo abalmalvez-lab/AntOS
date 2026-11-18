@@ -97,16 +97,20 @@ AntOS v1.x will NOT: create a new kernel from scratch; create new drivers when L
 Carries user goals into structured system requests:
 ```mermaid
 flowchart LR
-    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:20
-    classDef process fill:#4361ee,stroke:#3a56d4,color:#fff,rx:10
-    classDef gateway fill:#f39c12,stroke:#d68910,color:#fff,rx:10
-    classDef action fill:#2ecc71,stroke:#27ae60,color:#fff,rx:10
+    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
+    classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
+    classDef gateway fill:#f39c12,stroke:#d68910,color:#fff
+    classDef action fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    req([Natural-language request]):::terminal --> resolver(Intent Resolver):::process
-    resolver --> orchestrator(AI Orchestrator):::process
-    orchestrator --> sag[Secure Action Gateway]:::gateway
-    sag --> api(Versioned Service API):::process
-    api --> os([OS Action]):::action
+    req([Natural-language request]) --> resolver(Intent Resolver)
+    resolver --> orchestrator(AI Orchestrator)
+    orchestrator --> sag[Secure Action Gateway]
+    sag --> api(Versioned Service API)
+    api --> os([OS Action])
+    class req terminal
+    class resolver,orchestrator,api process
+    class sag gateway
+    class os action
 ```
 
 ### 3.2 Context Transport
@@ -116,15 +120,19 @@ Provides the minimum authorized context required by applications and AI.
 Moves structured system, device, security, and infrastructure events:
 ```mermaid
 flowchart LR
-    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:20
-    classDef process fill:#00b4d8,stroke:#0096c7,color:#fff,rx:10
-    classDef engine fill:#9b59b6,stroke:#8e44ad,color:#fff,rx:10
-    classDef ui fill:#2ecc71,stroke:#27ae60,color:#fff,rx:10
+    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
+    classDef process fill:#00b4d8,stroke:#0096c7,color:#fff
+    classDef engine fill:#9b59b6,stroke:#8e44ad,color:#fff
+    classDef ui fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    evt([Kernel / Service / Device Event]):::terminal --> transport(Event Transport):::process
-    transport --> ctx(Context + Timeline + Health):::process
-    ctx --> rca(Root-Cause / Prediction Engine):::engine
-    rca --> cc([Command Center / Health Center]):::ui
+    evt([Kernel / Service / Device Event]) --> transport(Event Transport)
+    transport --> ctx(Context + Timeline + Health)
+    ctx --> rca(Root-Cause / Prediction Engine)
+    rca --> cc([Command Center / Health Center])
+    class evt terminal
+    class transport,ctx process
+    class rca engine
+    class cc ui
 ```
 
 ### 3.4 Action Transport
@@ -139,45 +147,54 @@ Connects search, timeline, system state, semantic relationships, and explanation
 
 ```mermaid
 flowchart TD
-    classDef shellLayer fill:#7209b7,stroke:#560bad,color:#fff,rx:10
-    classDef uxLayer fill:#b5179e,stroke:#9b1160,color:#fff,rx:10
-    classDef aiLayer fill:#00b4d8,stroke:#0096c7,color:#fff,rx:10
-    classDef gatewayLayer fill:#f39c12,stroke:#d68910,color:#fff,rx:10
-    classDef servicesLayer fill:#2ecc71,stroke:#27ae60,color:#fff,rx:10
-    classDef sandboxLayer fill:#95a5a6,stroke:#7f8c8d,color:#fff,rx:10
-    classDef osLayer fill:#4361ee,stroke:#3a56d4,color:#fff,rx:10
-    classDef atomicLayer fill:#e74c3c,stroke:#c0392b,color:#fff,rx:10
-    classDef kernelLayer fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:10
+    classDef shellLayer fill:#7209b7,stroke:#560bad,color:#fff
+    classDef uxLayer fill:#b5179e,stroke:#9b1160,color:#fff
+    classDef aiLayer fill:#00b4d8,stroke:#0096c7,color:#fff
+    classDef gatewayLayer fill:#f39c12,stroke:#d68910,color:#fff
+    classDef servicesLayer fill:#2ecc71,stroke:#27ae60,color:#fff
+    classDef sandboxLayer fill:#95a5a6,stroke:#7f8c8d,color:#fff
+    classDef osLayer fill:#4361ee,stroke:#3a56d4,color:#fff
+    classDef atomicLayer fill:#e74c3c,stroke:#c0392b,color:#fff
+    classDef kernelLayer fill:#1a1a2e,stroke:#0f0f1e,color:#fff
 
     subgraph S1["AntOS Shell"]
-        S["Desktop - Workspaces - Command Center - Panels - Notifications"]:::shellLayer
+        S["Desktop - Workspaces - Command Center - Panels - Notifications"]
     end
     subgraph S2["User Experience Services"]
-        U["Search - Timeline - Clipboard - Settings - Files - Accessibility"]:::uxLayer
+        U["Search - Timeline - Clipboard - Settings - Files - Accessibility"]
     end
     subgraph S3["System Intelligence Layer"]
-        A["Context - AI Router - Reasoning - Agents - Predictions - RCA"]:::aiLayer
+        A["Context - AI Router - Reasoning - Agents - Predictions - RCA"]
     end
     subgraph S4["Secure Action Gateway"]
-        G["Capability - Policy - Consent - Impact - Audit - Undo"]:::gatewayLayer
+        G["Capability - Policy - Consent - Impact - Audit - Undo"]
     end
     subgraph S5["AntOS Core Services"]
-        C["Health - Security - Network - Devices - Automation - Knowledge"]:::servicesLayer
+        C["Health - Security - Network - Devices - Automation - Knowledge"]
     end
     subgraph S6["Application / Agent Sandbox"]
-        X["Flatpak - Portals - Rootless Containers - Agent Capabilities"]:::sandboxLayer
+        X["Flatpak - Portals - Rootless Containers - Agent Capabilities"]
     end
     subgraph S7["OS Services"]
-        O["systemd - NetworkManager - PipeWire - BlueZ - D-Bus"]:::osLayer
+        O["systemd - NetworkManager - PipeWire - BlueZ - D-Bus"]
     end
     subgraph S8["Atomic / Image-Based OS"]
-        T["Updates - Deployments - Recovery - Btrfs - Boot"]:::atomicLayer
+        T["Updates - Deployments - Recovery - Btrfs - Boot"]
     end
     subgraph S9["Linux Kernel"]
-        K["CPU - Memory - GPU - Storage - Network - USB - Input"]:::kernelLayer
+        K["CPU - Memory - GPU - Storage - Network - USB - Input"]
     end
 
     S --> U --> A --> G --> C --> X --> O --> T --> K
+    class S shellLayer
+    class U uxLayer
+    class A aiLayer
+    class G gatewayLayer
+    class C servicesLayer
+    class X sandboxLayer
+    class O osLayer
+    class T atomicLayer
+    class K kernelLayer
 ```
 
 Layers are strictly ordered: each layer may only depend on layers below it. The Secure Action Gateway is the only path from the intelligence layer to privileged OS services.
@@ -659,15 +676,19 @@ Emits `/run/antos/hardware-profile.json`.
 
 ```mermaid
 flowchart LR
-    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:20
-    classDef process fill:#4361ee,stroke:#3a56d4,color:#fff,rx:10
-    classDef artifact fill:#00b4d8,stroke:#0096c7,color:#fff,rx:10
-    classDef success fill:#2ecc71,stroke:#27ae60,color:#fff,rx:10
+    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
+    classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
+    classDef artifact fill:#00b4d8,stroke:#0096c7,color:#fff
+    classDef success fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    cf([Containerfile]):::terminal -->|podman build| ci(Container Image):::process
-    ci -->|bootc-image-builder| qcow2(qcow2 Disk Image):::artifact
-    qcow2 -->|run-qemu.sh| qemu(QEMU Boot):::process
-    qemu --> gates([Phase Gate Scripts]):::success
+    cf([Containerfile]) -->|podman build| ci(Container Image)
+    ci -->|bootc-image-builder| qcow2(qcow2 Disk Image)
+    qcow2 -->|run-qemu.sh| qemu(QEMU Boot)
+    qemu --> gates([Phase Gate Scripts])
+    class cf terminal
+    class ci,qemu process
+    class qcow2 artifact
+    class gates success
 ```
 
 ### 17.2 Containerfile structure
