@@ -111,7 +111,7 @@ flowchart LR
     classDef engine fill:#9b59b6,stroke:#8e44ad,color:#fff
     classDef ui fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    evt([Kernel / Service / Device Event]) --> transport(Event Transport)
+    evt([Kernel / Service<br/>Device Event]) --> transport(Event Transport)
     transport --> ctx(Context + Timeline + Health)
     ctx --> rca(Root-Cause / Prediction Engine)
     rca --> cc([Command Center / Health Center])
@@ -147,31 +147,31 @@ flowchart TD
     classDef kernelLayer fill:#1a1a2e,stroke:#0f0f1e,color:#fff
 
     subgraph S1["AntOS Shell"]
-        S["Desktop - Workspaces - Command Center - Panels - Notifications"]
+        S["Desktop - Workspaces<br/>Command Center - Panels<br/>Notifications"]
     end
     subgraph S2["User Experience Services"]
-        U["Search - Timeline - Clipboard - Settings - Files - Accessibility"]
+        U["Search - Timeline<br/>Clipboard - Settings - Files<br/>Accessibility"]
     end
     subgraph S3["System Intelligence Layer"]
-        A["Context - AI Router - Reasoning - Agents - Predictions - RCA"]
+        A["Context - AI Router<br/>Reasoning - Agents<br/>Predictions - RCA"]
     end
     subgraph S4["Secure Action Gateway"]
-        G["Capability - Policy - Consent - Impact - Audit - Undo"]
+        G["Capability - Policy<br/>Consent - Impact - Audit<br/>Undo"]
     end
     subgraph S5["AntOS Core Services"]
-        C["Health - Security - Network - Devices - Automation - Knowledge"]
+        C["Health - Security - Network<br/>Devices - Automation<br/>Knowledge"]
     end
     subgraph S6["Application / Agent Sandbox"]
-        X["Flatpak - Portals - Rootless Containers - Agent Capabilities"]
+        X["Flatpak - Portals<br/>Rootless Containers<br/>Agent Capabilities"]
     end
     subgraph S7["OS Services"]
-        O["systemd - NetworkManager - PipeWire - BlueZ - D-Bus"]
+        O["systemd - NetworkManager<br/>PipeWire - BlueZ - D-Bus"]
     end
     subgraph S8["Atomic / Image-Based OS"]
-        T["Updates - Deployments - Recovery - Btrfs - Boot"]
+        T["Updates - Deployments<br/>Recovery - Btrfs - Boot"]
     end
     subgraph S9["Linux Kernel"]
-        K["CPU - Memory - GPU - Storage - Network - USB - Input"]
+        K["CPU - Memory - GPU - Storage<br/>Network - USB - Input"]
     end
 
     S --> U --> A --> G --> C --> X --> O --> T --> K
