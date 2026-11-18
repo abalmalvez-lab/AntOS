@@ -84,10 +84,10 @@ flowchart TD
     classDef gateway fill:#f39c12,stroke:#d68910,color:#fff
     classDef action fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    req([Natural-language request]) --> resolver(Intent Resolver)
-    resolver --> orchestrator(AI Orchestrator)
-    orchestrator --> sag[Secure Action Gateway]
-    sag --> api(Versioned Service API)
+    req([Natural-language<br/>request]) --> resolver(Intent<br/>Resolver)
+    resolver --> orchestrator(AI<br/>Orchestrator)
+    orchestrator --> sag[Secure Action<br/>Gateway]
+    sag --> api(Versioned<br/>Service API)
     api --> os([OS Action])
     class req terminal
     class resolver,orchestrator,api process
@@ -111,9 +111,9 @@ flowchart TD
     classDef engine fill:#9b59b6,stroke:#8e44ad,color:#fff
     classDef ui fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    evt([Kernel / Service<br/>Device Event]) --> transport(Event Transport)
+    evt([Kernel<br/>Service Device Event]) --> transport(Event<br/>Transport)
     transport --> ctx(Context<br/>Timeline<br/>Health)
-    ctx --> rca(Root-Cause<br/>Prediction Engine)
+    ctx --> rca(Root-Cause<br/>Prediction<br/>Engine)
     rca --> cc([Command Center<br/>Health Center])
     class evt terminal
     class transport,ctx process
@@ -149,29 +149,29 @@ flowchart TD
     subgraph S1["AntOS Shell"]
         S["Desktop<br/>Workspaces<br/>Command Center<br/>Panels<br/>Notifications"]
     end
-    subgraph S2["User Experience Services"]
-        U["Search<br/>Timeline<br/>Clipboard<br/>Settings<br/>Files<br/>Accessibility"]
+    subgraph S2["User<br/>Experience<br/>Services"]
+        U["Search<br/>Timeline<br/>Clipboard<br/>Settings Files<br/>Accessibility"]
     end
-    subgraph S3["System Intelligence Layer"]
-        A["Context<br/>AI Router<br/>Reasoning<br/>Agents<br/>Predictions<br/>RCA"]
+    subgraph S3["System<br/>Intelligence<br/>Layer"]
+        A["Context AI<br/>Router<br/>Reasoning<br/>Agents<br/>Predictions<br/>RCA"]
     end
-    subgraph S4["Secure Action Gateway"]
-        G["Capability<br/>Policy<br/>Consent<br/>Impact<br/>Audit<br/>Undo"]
+    subgraph S4["Secure Action<br/>Gateway"]
+        G["Capability<br/>Policy Consent<br/>Impact Audit<br/>Undo"]
     end
-    subgraph S5["AntOS Core Services"]
+    subgraph S5["AntOS Core<br/>Services"]
         C["Health<br/>Security<br/>Network<br/>Devices<br/>Automation<br/>Knowledge"]
     end
     subgraph S6["Application<br/>Agent Sandbox"]
-        X["Flatpak<br/>Portals<br/>Rootless Containers<br/>Agent Capabilities"]
+        X["Flatpak<br/>Portals<br/>Rootless<br/>Containers<br/>Agent<br/>Capabilities"]
     end
     subgraph S7["OS Services"]
-        O["systemd<br/>NetworkManager<br/>PipeWire<br/>BlueZ<br/>D-Bus"]
+        O["systemd<br/>NetworkManager<br/>PipeWire BlueZ<br/>D-Bus"]
     end
     subgraph S8["Atomic<br/>Image-Based OS"]
-        T["Updates<br/>Deployments<br/>Recovery<br/>Btrfs<br/>Boot"]
+        T["Updates<br/>Deployments<br/>Recovery Btrfs<br/>Boot"]
     end
     subgraph S9["Linux Kernel"]
-        K["CPU<br/>Memory<br/>GPU<br/>Storage<br/>Network<br/>USB<br/>Input"]
+        K["CPU Memory GPU<br/>Storage<br/>Network USB<br/>Input"]
     end
 
     S --> U --> A --> G --> C --> X --> O --> T --> K
