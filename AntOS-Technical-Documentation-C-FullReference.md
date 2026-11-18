@@ -96,6 +96,7 @@ AntOS v1.x will NOT: create a new kernel from scratch; create new drivers when L
 ### 3.1 Intent Transport
 Carries user goals into structured system requests:
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": true}}}%%
 flowchart LR
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
@@ -119,6 +120,7 @@ Provides the minimum authorized context required by applications and AI.
 ### 3.3 Event Transport
 Moves structured system, device, security, and infrastructure events:
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": true}}}%%
 flowchart LR
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef process fill:#00b4d8,stroke:#0096c7,color:#fff
@@ -146,6 +148,7 @@ Connects search, timeline, system state, semantic relationships, and explanation
 ## 4. High-Level Architecture
 
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": true}}}%%
 flowchart TD
     classDef shellLayer fill:#7209b7,stroke:#560bad,color:#fff
     classDef uxLayer fill:#b5179e,stroke:#9b1160,color:#fff
@@ -675,6 +678,7 @@ Emits `/run/antos/hardware-profile.json`.
 ### 17.1 Flow
 
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": true}}}%%
 flowchart LR
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
