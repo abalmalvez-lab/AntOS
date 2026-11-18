@@ -195,7 +195,7 @@ The **only path** from intelligence and automation to privileged OS actions.
 
 ```mermaid
 %%{init: {"flowchart": {"useMaxWidth": true}}}%%
-flowchart LR
+flowchart TD
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef gate fill:#f39c12,stroke:#d68910,color:#fff
     classDef decision fill:#fff,stroke:#f39c12,color:#212529
@@ -300,7 +300,7 @@ Event Bus, Context Engine, Timeline, Backup, Update Intelligence, Energy Managem
 
 ```mermaid
 %%{init: {"flowchart": {"useMaxWidth": true}}}%%
-flowchart LR
+flowchart TD
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
     classDef decision fill:#fff,stroke:#4361ee,color:#212529
@@ -377,7 +377,7 @@ flowchart LR
 
 ```mermaid
 %%{init: {"flowchart": {"useMaxWidth": true}}}%%
-flowchart LR
+flowchart TD
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
     classDef artifact fill:#00b4d8,stroke:#0096c7,color:#fff
