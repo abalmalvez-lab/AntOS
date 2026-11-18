@@ -14,6 +14,7 @@ AntOS is built as a **bootable container image** that is converted to a **qcow2 
 ### Build flow
 
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": true}}}%%
 flowchart LR
     classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
     classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
