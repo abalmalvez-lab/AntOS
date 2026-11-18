@@ -112,9 +112,9 @@ flowchart LR
     classDef ui fill:#2ecc71,stroke:#27ae60,color:#fff
 
     evt([Kernel / Service<br/>Device Event]) --> transport(Event Transport)
-    transport --> ctx(Context + Timeline + Health)
-    ctx --> rca(Root-Cause / Prediction Engine)
-    rca --> cc([Command Center / Health Center])
+    transport --> ctx(Context<br/>Timeline<br/>Health)
+    ctx --> rca(Root-Cause<br/>Prediction Engine)
+    rca --> cc([Command Center<br/>Health Center])
     class evt terminal
     class transport,ctx process
     class rca engine
@@ -147,31 +147,31 @@ flowchart TD
     classDef kernelLayer fill:#1a1a2e,stroke:#0f0f1e,color:#fff
 
     subgraph S1["AntOS Shell"]
-        S["Desktop - Workspaces<br/>Command Center - Panels<br/>Notifications"]
+        S["Desktop<br/>Workspaces<br/>Command Center<br/>Panels<br/>Notifications"]
     end
     subgraph S2["User Experience Services"]
-        U["Search - Timeline<br/>Clipboard - Settings - Files<br/>Accessibility"]
+        U["Search<br/>Timeline<br/>Clipboard<br/>Settings<br/>Files<br/>Accessibility"]
     end
     subgraph S3["System Intelligence Layer"]
-        A["Context - AI Router<br/>Reasoning - Agents<br/>Predictions - RCA"]
+        A["Context<br/>AI Router<br/>Reasoning<br/>Agents<br/>Predictions<br/>RCA"]
     end
     subgraph S4["Secure Action Gateway"]
-        G["Capability - Policy<br/>Consent - Impact - Audit<br/>Undo"]
+        G["Capability<br/>Policy<br/>Consent<br/>Impact<br/>Audit<br/>Undo"]
     end
     subgraph S5["AntOS Core Services"]
-        C["Health - Security - Network<br/>Devices - Automation<br/>Knowledge"]
+        C["Health<br/>Security<br/>Network<br/>Devices<br/>Automation<br/>Knowledge"]
     end
-    subgraph S6["Application / Agent Sandbox"]
-        X["Flatpak - Portals<br/>Rootless Containers<br/>Agent Capabilities"]
+    subgraph S6["Application<br/>Agent Sandbox"]
+        X["Flatpak<br/>Portals<br/>Rootless Containers<br/>Agent Capabilities"]
     end
     subgraph S7["OS Services"]
-        O["systemd - NetworkManager<br/>PipeWire - BlueZ - D-Bus"]
+        O["systemd<br/>NetworkManager<br/>PipeWire<br/>BlueZ<br/>D-Bus"]
     end
-    subgraph S8["Atomic / Image-Based OS"]
-        T["Updates - Deployments<br/>Recovery - Btrfs - Boot"]
+    subgraph S8["Atomic<br/>Image-Based OS"]
+        T["Updates<br/>Deployments<br/>Recovery<br/>Btrfs<br/>Boot"]
     end
     subgraph S9["Linux Kernel"]
-        K["CPU - Memory - GPU - Storage<br/>Network - USB - Input"]
+        K["CPU<br/>Memory<br/>GPU<br/>Storage<br/>Network<br/>USB<br/>Input"]
     end
 
     S --> U --> A --> G --> C --> X --> O --> T --> K
