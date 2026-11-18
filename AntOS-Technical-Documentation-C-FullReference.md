@@ -1,13 +1,13 @@
-# AntOS Technical Documentation — C: Full Technical Reference
+# AntOS Technical Documentation - C: Full Technical Reference
 
-**Project:** AntOS — AI-Native Transport Operating System
+**Project:** AntOS - AI-Native Transport Operating System
 **Document type:** Comprehensive Technical Reference
 **Source of truth:** `AntOS/AntOS_Master_AI_Build_Specification_FINAL.md`, `AntOS/docs/`, `AntOS/BUILD_STATUS.md`, `AntOS/platform/image/Containerfile`, `AntOS/tooling/`
 **Generated:** 2026-08-25
 
 > This document is the consolidated reference. For deeper detail, see:
-> - **Document A — Architecture** for architecture focus
-> - **Document B — Build & Operations** for build/ops focus
+> - **Document A - Architecture** for architecture focus
+> - **Document B - Build & Operations** for build/ops focus
 
 ---
 
@@ -62,7 +62,7 @@ A Linux-based, Wayland-native, atomic/rollback-capable operating environment tha
 | Release Date | 2024-08-25 | `CurrentVesion.json` |
 | Fedora base | 41 | `Containerfile`, `os-release` |
 | Kernel | 6.17.8-100.fc41.x86_64 | Fedora 41 bootc base |
-| Latest release gate | v1.2.0 (Phase 0–20) + Phase 21 | `BUILD_STATUS.md` |
+| Latest release gate | v1.2.0 (Phase 0-20) + Phase 21 | `BUILD_STATUS.md` |
 
 ---
 
@@ -150,31 +150,31 @@ flowchart TD
     classDef kernelLayer fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:10
 
     subgraph S1["AntOS Shell"]
-        S["Desktop • Workspaces • Command Center • Panels • Notifications"]:::shellLayer
+        S["Desktop - Workspaces - Command Center - Panels - Notifications"]:::shellLayer
     end
     subgraph S2["User Experience Services"]
-        U["Search • Timeline • Clipboard • Settings • Files • Accessibility"]:::uxLayer
+        U["Search - Timeline - Clipboard - Settings - Files - Accessibility"]:::uxLayer
     end
     subgraph S3["System Intelligence Layer"]
-        A["Context • AI Router • Reasoning • Agents • Predictions • RCA"]:::aiLayer
+        A["Context - AI Router - Reasoning - Agents - Predictions - RCA"]:::aiLayer
     end
     subgraph S4["Secure Action Gateway"]
-        G["Capability • Policy • Consent • Impact • Audit • Undo"]:::gatewayLayer
+        G["Capability - Policy - Consent - Impact - Audit - Undo"]:::gatewayLayer
     end
     subgraph S5["AntOS Core Services"]
-        C["Health • Security • Network • Devices • Automation • Knowledge"]:::servicesLayer
+        C["Health - Security - Network - Devices - Automation - Knowledge"]:::servicesLayer
     end
     subgraph S6["Application / Agent Sandbox"]
-        X["Flatpak • Portals • Rootless Containers • Agent Capabilities"]:::sandboxLayer
+        X["Flatpak - Portals - Rootless Containers - Agent Capabilities"]:::sandboxLayer
     end
     subgraph S7["OS Services"]
-        O["systemd • NetworkManager • PipeWire • BlueZ • D-Bus"]:::osLayer
+        O["systemd - NetworkManager - PipeWire - BlueZ - D-Bus"]:::osLayer
     end
     subgraph S8["Atomic / Image-Based OS"]
-        T["Updates • Deployments • Recovery • Btrfs • Boot"]:::atomicLayer
+        T["Updates - Deployments - Recovery - Btrfs - Boot"]:::atomicLayer
     end
     subgraph S9["Linux Kernel"]
-        K["CPU • Memory • GPU • Storage • Network • USB • Input"]:::kernelLayer
+        K["CPU - Memory - GPU - Storage - Network - USB - Input"]:::kernelLayer
     end
 
     S --> U --> A --> G --> C --> X --> O --> T --> K
@@ -190,33 +190,33 @@ Layers are strictly ordered: each layer may only depend on layers below it. The 
 |---|---|---|
 | Kernel | Upstream Linux via Fedora 41 (`6.17.8-100.fc41.x86_64`) | ADR-0001 |
 | System image | Atomic/image-based via rpm-ostree / bootc | ADR-0001, ADR-0002 |
-| Init/service manager | systemd | master spec §4 |
-| Display protocol | Wayland | master spec §4 |
+| Init/service manager | systemd | master spec sec. 4 |
+| Display protocol | Wayland | master spec sec. 4 |
 | Compositor | Custom AntOS Shell on Smithay (Rust) | ADR-0004 |
-| Core language | Rust | master spec §4 |
+| Core language | Rust | master spec sec. 4 |
 | UI toolkit | Qt/QML + Rust bindings + AntOS design-system | ADR-0003 |
-| AI tooling | Python behind stable service contracts | master spec §4 |
-| Desktop app isolation | Flatpak + portals | master spec §4 |
-| Containers | Podman, rootless by default | master spec §4 |
-| Filesystem | Btrfs where supported | master spec §4 |
-| Audio | PipeWire | master spec §4 |
-| Networking | NetworkManager | master spec §4 |
-| Bluetooth | BlueZ | master spec §4 |
+| AI tooling | Python behind stable service contracts | master spec sec. 4 |
+| Desktop app isolation | Flatpak + portals | master spec sec. 4 |
+| Containers | Podman, rootless by default | master spec sec. 4 |
+| Filesystem | Btrfs where supported | master spec sec. 4 |
+| Audio | PipeWire | master spec sec. 4 |
+| Networking | NetworkManager | master spec sec. 4 |
+| Bluetooth | BlueZ | master spec sec. 4 |
 | IPC (primary) | D-Bus + versioned AntOS service APIs | ADR-0005 |
 | IPC (high-throughput) | gRPC / typed channels | ADR-0005 |
 | Structured events | AntOS Event Bus abstraction | ADR-0005 |
-| Logging | journald + structured AntOS event store | master spec §4 |
-| Local model runtime | Provider abstraction, Ollama first | master spec §4 |
+| Logging | journald + structured AntOS event store | master spec sec. 4 |
+| Local model runtime | Provider abstraction, Ollama first | master spec sec. 4 |
 | Security policy | SELinux (Fedora default) | ADR-0001 |
-| Boot | UEFI | master spec §4 |
-| Installer | Separate module (Anaconda addon) | master spec §4 |
+| Boot | UEFI | master spec sec. 4 |
+| Installer | Separate module (Anaconda addon) | master spec sec. 4 |
 | Update strategy | Atomic update, health verification, automatic rollback | ADR-0002 |
 
 ### Why Fedora was chosen (ADR-0001)
 
 1. **rpm-ostree** provides atomic, image-based updates with built-in rollback.
 2. **Fedora Silverblue** ships a maintained Wayland/PipeWire/systemd/NetworkManager/SELinux stack.
-3. **Toolchain alignment** — rpm-ostree + OSTree + podman match the master spec's container/isolation strategy.
+3. **Toolchain alignment** - rpm-ostree + OSTree + podman match the master spec's container/isolation strategy.
 
 Ubuntu was explicitly rejected because "snap integration conflicts with the goal of a single primary packaging/isolation story." Debian rejected (no atomic by default). Arch rejected (maintenance burden). Fedora CoreOS/IoT rejected (server-only).
 
@@ -226,79 +226,79 @@ Ubuntu was explicitly rejected because "snap integration conflicts with the goal
 
 ```text
 AntOS/
-├── AntOS_Master_AI_Build_Specification_FINAL.md  — authoritative architecture
-├── AntOS_Build_Execution_Guide.md                — step-by-step to v1.0
-├── AntOS_AI_Command_Template.md                  — copy-paste build commands
-├── AntOS_Phase21_AI_Command_Template.md          — Phase 21 (ARM/SFF) commands
-├── BUILD_STATUS.md                               — phase progress (single source of truth)
-├── CurrentVesion.json                            — version metadata source of truth
-├── MODULE.md                                     — root module definition
-├── README.md, CONTRIBUTING.md, SECURITY.md
-│
-├── docs/
-│   ├── architecture/   — high-level structure, transport planes, repo layout
-│   ├── adr/            — ADR-0001..0021
-│   ├── threat-models/  — initial + evolving threat models
-│   ├── ux/             — UX research and design
-│   ├── api/            — public API definitions (D-Bus XML: org.antos.Shell1)
-│   ├── operations/     — build, release, rollback, phase plans, ISO playbook
-│   ├── design-system/  — UI design system reference
-│   ├── coding-standards.md
-│   └── releases/
-│
-├── contracts/
-│   ├── dbus/                  — D-Bus interface contracts (org.antos.*)
-│   ├── capabilities/          — policy-schema.json + default-policy.json
-│   ├── events/                — event schema definitions
-│   ├── protobuf-or-schema/    — gRPC/protobuf contracts
-│   └── versioning/            — requirement-ids.md (<DOMAIN>-<AREA>-<NNN>)
-│
-├── platform/
-│   └── image/
-│       ├── Containerfile      — multi-stage bootable container build
-│       ├── branding/          — icons, wallpapers, logos
-│       └── config/            — os-release, journald, recovery, sudoers
-│
-├── shell/
-│   ├── compositor/            — Smithay Wayland compositor (Rust)
-│   ├── api/                   — Shell D-Bus API service
-│   └── ui/                    — Qt/QML shell UI + design-system
-│
-├── services/
-│   ├── action-gateway/        — Secure Action Gateway
-│   ├── health/                — System health/sysinfo
-│   ├── security/              — Security Guardian / capability
-│   ├── devices/               — Hardware profile detection
-│   ├── automation/            — Whitelisted command execution
-│   ├── knowledge/             — Notes / knowledge base
-│   ├── installer/             — Rollback status client
-│   ├── beta/                  — Service status
-│   ├── interaction/           — Input status
-│   ├── connectivity/          — Network status
-│   ├── productivity/          — Focus
-│   └── advanced/              — Feature flags
-│
-├── intelligence/
-│   ├── Cargo.toml             — antos-intelligence-dbus
-│   ├── providers/             — Provider manifest (Ollama first)
-│   └── client/                — antos-list-providers
-│
-├── apps/
-│   └── command-center/        — Search index + D-Bus search service
-│
-├── integrations/              — Flatpak, Podman, Ollama, smart-home, SSH, NAS
-├── installer/
-│   ├── anaconda-addon/        — com_antos_account GUI spoke
-│   └── first-boot/            — antos-first-boot wizard + service
-├── sdk/                       — Rust, Python, examples
-├── tests/                     — unit, contract, integration, security, performance,
-│                                accessibility, UI, QEMU, recovery
-├── tooling/
-│   ├── image-builder/         — build.sh, bib-common.sh, build-iso.sh
-│   ├── vm-runner/             — run-qemu.sh, phase gate scripts
-│   ├── ci/                    — antos-ci.sh
-│   └── dev/, release/, lint/
-└── releases/
+|-- AntOS_Master_AI_Build_Specification_FINAL.md  - authoritative architecture
+|-- AntOS_Build_Execution_Guide.md  - step-by-step to v1.0
+|-- AntOS_AI_Command_Template.md  - copy-paste build commands
+|-- AntOS_Phase21_AI_Command_Template.md  - Phase 21 (ARM/SFF) commands
+|-- BUILD_STATUS.md  - phase progress (single source of truth)
+|-- CurrentVesion.json  - version metadata source of truth
+|-- MODULE.md  - root module definition
+|-- README.md, CONTRIBUTING.md, SECURITY.md
+|
+|-- docs/
+|   |-- architecture/  - high-level structure, transport planes, repo layout
+|   |-- adr/  - ADR-0001..0021
+|   |-- threat-models/  - initial + evolving threat models
+|   |-- ux/  - UX research and design
+|   |-- api/  - public API definitions (D-Bus XML: org.antos.Shell1)
+|   |-- operations/  - build, release, rollback, phase plans, ISO playbook
+|   |-- design-system/  - UI design system reference
+|   |-- coding-standards.md
+|   `-- releases/
+|
+|-- contracts/
+|   |-- dbus/  - D-Bus interface contracts (org.antos.*)
+|   |-- capabilities/  - policy-schema.json + default-policy.json
+|   |-- events/  - event schema definitions
+|   |-- protobuf-or-schema/  - gRPC/protobuf contracts
+|   `-- versioning/  - requirement-ids.md (<DOMAIN>-<AREA>-<NNN>)
+|
+|-- platform/
+|   `-- image/
+|       |-- Containerfile  - multi-stage bootable container build
+|       |-- branding/  - icons, wallpapers, logos
+|       `-- config/  - os-release, journald, recovery, sudoers
+|
+|-- shell/
+|   |-- compositor/  - Smithay Wayland compositor (Rust)
+|   |-- api/  - Shell D-Bus API service
+|   `-- ui/  - Qt/QML shell UI + design-system
+|
+|-- services/
+|   |-- action-gateway/  - Secure Action Gateway
+|   |-- health/  - System health/sysinfo
+|   |-- security/  - Security Guardian / capability
+|   |-- devices/  - Hardware profile detection
+|   |-- automation/  - Whitelisted command execution
+|   |-- knowledge/  - Notes / knowledge base
+|   |-- installer/  - Rollback status client
+|   |-- beta/  - Service status
+|   |-- interaction/  - Input status
+|   |-- connectivity/  - Network status
+|   |-- productivity/  - Focus
+|   `-- advanced/  - Feature flags
+|
+|-- intelligence/
+|   |-- Cargo.toml  - antos-intelligence-dbus
+|   |-- providers/  - Provider manifest (Ollama first)
+|   `-- client/  - antos-list-providers
+|
+|-- apps/
+|   `-- command-center/  - Search index + D-Bus search service
+|
+|-- integrations/  - Flatpak, Podman, Ollama, smart-home, SSH, NAS
+|-- installer/
+|   |-- anaconda-addon/  - com_antos_account GUI spoke
+|   `-- first-boot/  - antos-first-boot wizard + service
+|-- sdk/  - Rust, Python, examples
+|-- tests/  - unit, contract, integration, security, performance,
+|                                accessibility, UI, QEMU, recovery
+|-- tooling/
+|   |-- image-builder/  - build.sh, bib-common.sh, build-iso.sh
+|   |-- vm-runner/  - run-qemu.sh, phase gate scripts
+|   |-- ci/  - antos-ci.sh
+|   `-- dev/, release/, lint/
+`-- releases/
 ```
 
 Every major directory MUST contain a `MODULE.md` (purpose, owned/explicit non-responsibilities, public/consumed interfaces, events, privileges, data, privacy, failure behavior, security boundaries, tests, definition of done).
@@ -318,9 +318,9 @@ Every major directory MUST contain a `MODULE.md` (purpose, owned/explicit non-re
 | ADR-0005 | Primary IPC | Accepted | D-Bus (desktop/system) + gRPC (high-throughput) + Event Bus. |
 | ADR-0021 | ARM64 / SFF | Proposed | Multi-arch build + hardware-profile service. Bare-metal SBC deferred to Phase 22. |
 
-### Planned ADRs (0006–0020)
+### Planned ADRs (0006-0020)
 
-Event schema · Settings storage · Search/index DB · Local AI provider interface · Security policy system · Update signing/trust · Secure Action Gateway authorization · Encryption/secret storage · Installer framework · Agent package format · Smart-home abstraction · Telemetry/privacy storage · UI design system · Semantic embedding storage · Crash reporting policy.
+Event schema - Settings storage - Search/index DB - Local AI provider interface - Security policy system - Update signing/trust - Secure Action Gateway authorization - Encryption/secret storage - Installer framework - Agent package format - Smart-home abstraction - Telemetry/privacy storage - UI design system - Semantic embedding storage - Crash reporting policy.
 
 ### ADR process
 
@@ -340,21 +340,21 @@ Does NOT own: compositor logic, AI routing, application permissions.
 All destructive operations require explicit gating and audit.
 
 ### 8.3 Shell (`shell/`)
-- **compositor/** — Smithay Wayland compositor (Rust). See §10.
-- **api/** — Shell D-Bus API (`org.antos.Shell1`). See §10.
-- **ui/** — Qt/QML shell UI + design-system components.
+- **compositor/** - Smithay Wayland compositor (Rust). See sec. 10.
+- **api/** - Shell D-Bus API (`org.antos.Shell1`). See sec. 10.
+- **ui/** - Qt/QML shell UI + design-system components.
 
 ### 8.4 Services (`services/MODULE.md`)
-13 cross-cutting service areas. See §9.
+13 cross-cutting service areas. See sec. 9.
 
 ### 8.5 Intelligence (`intelligence/`)
-`antos-intelligence-dbus` (`org.antos.Intelligence1`), provider manifest (Ollama first). See §11.
+`antos-intelligence-dbus` (`org.antos.Intelligence1`), provider manifest (Ollama first). See sec. 11.
 
 ### 8.6 Installer (`installer/MODULE.md`)
-Live image, installer UI, first-boot wizard, partitioning/encryption, recovery, migration, support bundles. See §14.
+Live image, installer UI, first-boot wizard, partitioning/encryption, recovery, migration, support bundles. See sec. 14.
 
 ### 8.7 Contracts (`contracts/`)
-Versioned D-Bus, capability policy, event schema, protobuf, requirement ID definitions. See §12.
+Versioned D-Bus, capability policy, event schema, protobuf, requirement ID definitions. See sec. 12.
 
 ### 8.8 Apps (`apps/`)
 First-party applications. Current: `command-center/` (search index + D-Bus search service).
@@ -401,10 +401,10 @@ Planned but not yet implemented as separate services: event-bus, context, timeli
 **Dependency:** Smithay 0.7 with features: `wayland_frontend`, `backend_drm`, `backend_gbm`, `renderer_pixman`.
 
 **Wayland protocols implemented:**
-- `wl_compositor`, `wl_shm` — basic surface and buffer management
-- `xdg_wm_base` — application window management
-- `wl_output` — display output advertisement (multi-display: two synthetic `antos-0`/`antos-1` outputs in headless mode; real DRM output when available)
-- `wl_seat` — keyboard and pointer input
+- `wl_compositor`, `wl_shm` - basic surface and buffer management
+- `xdg_wm_base` - application window management
+- `wl_output` - display output advertisement (multi-display: two synthetic `antos-0`/`antos-1` outputs in headless mode; real DRM output when available)
+- `wl_seat` - keyboard and pointer input
 
 **DRM/GBM path** (`shell/compositor/src/drm.rs`):
 1. Opens `/dev/dri/card0`, creates `DrmDevice`.
@@ -412,7 +412,7 @@ Planned but not yet implemented as separate services: event-bus, context, timeli
 3. Creates `GbmDevice`, `GbmAllocator` (SCANOUT), `GbmBufferedSurface`.
 4. Creates `PixmanRenderer`, derives DMA-BUF formats, falls back to `Xrgb8888` linear.
 5. Creates `antos-drm` `Output`, sets mode/transform/scale/location, advertises via `Output::create_global`.
-6. `DrmBackend::render_frame` — calls `next_buffer`, binds `Dmabuf`, clears to `Color32F(0.02, 0.02, 0.03, 1.0)`, finishes frame, queues buffer.
+6. `DrmBackend::render_frame` - calls `next_buffer`, binds `Dmabuf`, clears to `Color32F(0.02, 0.02, 0.03, 1.0)`, finishes frame, queues buffer.
 7. One-shot `frame_queued` guard renders only the first visible test frame; headless fallback preserved for non-DRM environments.
 
 **Open DRM/GBM sub-slices** (per `antos-drm-visible-frame-step1.md`):
@@ -423,21 +423,21 @@ Planned but not yet implemented as separate services: event-bus, context, timeli
 
 ### 10.2 Shell API (`shell/api/`)
 
-**Service:** `antos-shell-api-dbus` — exposes `org.antos.Shell1` on D-Bus.
+**Service:** `antos-shell-api-dbus` - exposes `org.antos.Shell1` on D-Bus.
 
 **Methods/signals:**
-- `Ping` — health check
-- `GetSessionState` — returns current session state
-- `RaiseError` — typed error reporting
-- `StateChanged` signal — session state change notifications
-- `SessionState` property — current session state
+- `Ping` - health check
+- `GetSessionState` - returns current session state
+- `RaiseError` - typed error reporting
+- `StateChanged` signal - session state change notifications
+- `SessionState` property - current session state
 
 **Clients:** `antos-session-status`, `antos-test-error`, `antos-watch-state`, `antos-shell-property`.
 
 ### 10.3 Shell UI (`shell/ui/`)
 
 **Binary:** `antos-shell-ui` (Qt/QML)
-**Design system:** `docs/design-system/` — component library including `Card`, `KpiCard`, `StatusChip`, `ListItem`, `SearchField`, `SwitchToggle`, `IconButton`, `Badge`, `AppLauncherTile`, `ToolLauncher`, `NotificationItem`, `CommandOutput`, `SmartSuggestion`, `RailButton`, `TopBar`.
+**Design system:** `docs/design-system/` - component library including `Card`, `KpiCard`, `StatusChip`, `ListItem`, `SearchField`, `SwitchToggle`, `IconButton`, `Badge`, `AppLauncherTile`, `ToolLauncher`, `NotificationItem`, `CommandOutput`, `SmartSuggestion`, `RailButton`, `TopBar`.
 
 ### 10.4 Session wiring
 
@@ -456,15 +456,15 @@ User session lingering is enabled for `antos` so the compositor starts at boot w
 
 ### 11.1 Service
 
-`antos-intelligence-dbus` — exposes `org.antos.Intelligence1` on D-Bus.
+`antos-intelligence-dbus` - exposes `org.antos.Intelligence1` on D-Bus.
 
 ### 11.2 Provider abstraction
 
-`intelligence/providers/manifest.json` defines available AI providers. **Ollama is supported first** per the master spec. Cloud AI is optional (P1 — Local First).
+`intelligence/providers/manifest.json` defines available AI providers. **Ollama is supported first** per the master spec. Cloud AI is optional (P1 - Local First).
 
 ### 11.3 Policy enforcement (Phase 8)
 
-`CanUseProvider` — policy enforcement gate that checks whether a given AI provider may be used. Enforced through the Secure Action Gateway.
+`CanUseProvider` - policy enforcement gate that checks whether a given AI provider may be used. Enforced through the Secure Action Gateway.
 
 ### 11.4 Privacy gateway
 
@@ -472,7 +472,7 @@ The Privacy Gateway ensures no AI access to raw sensitive events without authori
 
 ### 11.5 Client
 
-`antos-list-providers` — CLI client to list available AI providers.
+`antos-list-providers` - CLI client to list available AI providers.
 
 ---
 
@@ -493,18 +493,18 @@ The **only path** from intelligence/automation to privileged OS actions. Enforce
 
 ### 12.2 Components
 
-- `antos-policyd` — policy daemon (`org.antos.Policy1` D-Bus service)
-- `antos-policy-gateway` — gateway service
+- `antos-policyd` - policy daemon (`org.antos.Policy1` D-Bus service)
+- `antos-policy-gateway` - gateway service
 
 ### 12.3 Policy schema
 
-`contracts/capabilities/policy-schema.json` — JSON Schema for policy rules.
-`contracts/capabilities/default-policy.json` — default rules with risk classes:
+`contracts/capabilities/policy-schema.json` - JSON Schema for policy rules.
+`contracts/capabilities/default-policy.json` - default rules with risk classes:
 
 | Risk class | Meaning | Example |
 |---|---|---|
 | R0 | Trivial, auto-allow | `org.antos.Shell1.Ping` |
-| R1–R3 | Low-to-medium, contextual | (varies) |
+| R1-R3 | Low-to-medium, contextual | (varies) |
 | R4 | High, prompt user | `org.antos.capability.install.update` |
 | R5 | Destructive, deny by default | `org.antos.capability.format.disk` |
 
@@ -533,7 +533,7 @@ Fedora ships SELinux in enforcing mode by default. ADR-0001 chose Fedora partly 
 
 - **Flatpak + portals** for desktop apps
 - **Podman rootless** containers
-- **Agent capabilities** — least privilege per agent
+- **Agent capabilities** - least privilege per agent
 
 ### 13.4 Atomic update security
 
@@ -558,21 +558,21 @@ Security: signed installer packages, user-controlled encryption, privacy scans d
 
 ### 14.2 Anaconda addon
 
-`installer/anaconda-addon/com_antos_account/` — GUI spoke for account creation during install.
-- `gui/spokes/account.py` — spoke logic
-- `gui/spokes/account.glade` — UI layout
-- `99-antos.conf` — configuration
+`installer/anaconda-addon/com_antos_account/` - GUI spoke for account creation during install.
+- `gui/spokes/account.py` - spoke logic
+- `gui/spokes/account.glade` - UI layout
+- `99-antos.conf` - configuration
 
 ### 14.3 First-boot wizard
 
-`installer/first-boot/antos-first-boot` — interactive password collection on first boot.
-`antos-first-boot.service` — runs only when `/etc/antos-first-boot` exists (i.e., when no `CONSOLE_PASSWORD` was supplied at build time).
+`installer/first-boot/antos-first-boot` - interactive password collection on first boot.
+`antos-first-boot.service` - runs only when `/etc/antos-first-boot` exists (i.e., when no `CONSOLE_PASSWORD` was supplied at build time).
 
 ### 14.4 Recovery
 
-- `antos-recovery.target` — dedicated systemd recovery target
-- `antos-recovery-shell.service` + `/usr/local/bin/antos-recovery-shell` — serial console recovery shell
-- `/usr/local/bin/antos-prepare-rollback-test` — rollback test preparation
+- `antos-recovery.target` - dedicated systemd recovery target
+- `antos-recovery-shell.service` + `/usr/local/bin/antos-recovery-shell` - serial console recovery shell
+- `/usr/local/bin/antos-prepare-rollback-test` - rollback test preparation
 
 ---
 
@@ -584,7 +584,7 @@ OSTree via rpm-ostree/bootc:
 - Content-addressed, immutable deployment trees in `/ostree/repo`
 - A/B boot entries with automatic fallback on failed boot
 - Health verification before deployment is made default
-- Rollback is boot-loader-owned — cannot be blocked by running applications
+- Rollback is boot-loader-owned - cannot be blocked by running applications
 
 ### 15.2 Operator commands
 
@@ -614,13 +614,13 @@ tooling/vm-runner/test-rollback.sh   # End-to-end rollback test (Phase 1 gate)
 
 ### 16.1 Hardware tiers (master spec)
 
-AntOS defines hardware support tiers. Tier E is **ARM64 / Small Form Factor** (Raspberry Pi or equivalent) — a later profile that must not force compromises into the x86_64 v1 architecture.
+AntOS defines hardware support tiers. Tier E is **ARM64 / Small Form Factor** (Raspberry Pi or equivalent) - a later profile that must not force compromises into the x86_64 v1 architecture.
 
 ### 16.2 Multi-arch build (ADR-0021, Phase 21)
 
-- `build.sh --arch {x86_64,aarch64}` — default x86_64
+- `build.sh --arch {x86_64,aarch64}` - default x86_64
 - `quay.io/fedora/fedora-bootc:41` is multi-arch
-- `run-qemu.sh --arch {x86_64,aarch64}` — aarch64 uses `qemu-system-aarch64 -machine virt -cpu cortex-a72 -bios AAVMF_CODE.fd`
+- `run-qemu.sh --arch {x86_64,aarch64}` - aarch64 uses `qemu-system-aarch64 -machine virt -cpu cortex-a72 -bios AAVMF_CODE.fd`
 - x86_64 remains primary; ARM is additive
 - Cross-build on WSL blocked by upstream BIB/qemu-user-static; use native ARM host
 
@@ -672,11 +672,11 @@ flowchart LR
 
 ### 17.2 Containerfile structure
 
-**Stage 1 — Builder** (`quay.io/fedora/fedora:41`):
-- Compiles 5 Rust crates with Cargo dependency caching (dummy build → real source)
+**Stage 1 - Builder** (`quay.io/fedora/fedora:41`):
+- Compiles 5 Rust crates with Cargo dependency caching (dummy build -> real source)
 - Builder deps: cargo, rust, libxkbcommon-devel, wayland-devel, libdrm-devel, libgbm-devel, pixman-devel, pkgconf, gcc
 
-**Stage 2 — Final** (`quay.io/fedora/fedora-bootc:41`):
+**Stage 2 - Final** (`quay.io/fedora/fedora-bootc:41`):
 - Runtime packages: NetworkManager, systemd-resolved, qemu-guest-agent, openssh, sudo, libxkbcommon, wayland-utils, libdrm, libgbm, pixman, weston, dbus, qt6 stack, python3-jsonschema, dialog
 - Branding: os-release, issue, hostname, GRUB, profile prompt, icons, wallpapers, plymouth
 - User: antos (UID 1000, wheel + systemd-journal)
@@ -745,19 +745,19 @@ podman, qemu-img, qemu-system-x86_64, qemu-system-aarch64, edk2-aarch64 (AAVMF),
 | 13 | Passed | Developer/Device (build-info) |
 | 14 | Passed | Installer/Recovery (rollback-status) |
 | 15 | Passed | Beta Hardening (service-status, full-gate) |
-| **v1.0** | **Passed** | Baseline (Phase 0–15) |
+| **v1.0** | **Passed** | Baseline (Phase 0-15) |
 | 16 | Passed | Interaction/Accessibility (input-status) |
 | 17 | Passed | Connectivity (network-status) |
 | 18 | Passed | Security/Privacy (security-status) |
-| **v1.1** | **Passed** | Release (Phase 0–18) |
+| **v1.1** | **Passed** | Release (Phase 0-18) |
 | 19 | Passed | Productivity (focus) |
 | 20 | Passed | Advanced (feature flags) |
-| **v1.2** | **Passed** | Release (Phase 0–20) |
+| **v1.2** | **Passed** | Release (Phase 0-20) |
 | 21 | Passed | ARM64/SFF (multi-arch, aarch64 QEMU, SFF profile) |
 
 ### 18.3 Status definitions
 
-Not Started → In Progress → Blocked → Passed (all gate criteria verified and documented).
+Not Started -> In Progress -> Blocked -> Passed (all gate criteria verified and documented).
 
 ---
 
@@ -777,7 +777,7 @@ Not Started → In Progress → Blocked → Passed (all gate criteria verified a
 
 ### 19.2 Build-info
 
-`/usr/share/antos/build-info.json` — label, version, build_version, release_date, commit, timestamp. Query: `antos-build-info`.
+`/usr/share/antos/build-info.json` - label, version, build_version, release_date, commit, timestamp. Query: `antos-build-info`.
 
 ### 19.3 os-release
 
@@ -807,13 +807,13 @@ Running kernel reports `6.17.8-100.fc41.x86_64` via `uname -r`. This is a build-
 | Formatters | Rust: `cargo fmt`; QML: `qmlformat`; Python: `black`/`ruff` |
 | Secrets | Never commit secrets/keys/certs. Stop and report path only. |
 | Error handling | Explicit; no silent failures |
-| Definition of done | Beyond "code compiles" — tests, contracts, observability, rollback, docs |
+| Definition of done | Beyond "code compiles" - tests, contracts, observability, rollback, docs |
 
 ---
 
 ## 21. Engineering Rules
 
-(Master spec §0)
+(Master spec sec. 0)
 
 1. Never generate the entire AntOS source tree in one pass.
 2. Build through modules and phases.
@@ -881,5 +881,5 @@ External text must never be trusted as system instructions.
 | Build script | `AntOS/tooling/image-builder/build.sh` |
 | QEMU runner | `AntOS/tooling/vm-runner/run-qemu.sh` |
 | CI script | `AntOS/tooling/ci/antos-ci.sh` |
-| Document A — Architecture | `AntOS-Technical-Documentation-A-Architecture.md` |
-| Document B — Build & Ops | `AntOS-Technical-Documentation-B-BuildOps.md` |
+| Document A - Architecture | `AntOS-Technical-Documentation-A-Architecture.md` |
+| Document B - Build & Ops | `AntOS-Technical-Documentation-B-BuildOps.md` |
