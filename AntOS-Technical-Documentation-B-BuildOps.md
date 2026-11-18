@@ -1,6 +1,6 @@
-# AntOS Technical Documentation — B: Build & Operations
+# AntOS Technical Documentation - B: Build & Operations
 
-**Project:** AntOS — AI-Native Transport Operating System
+**Project:** AntOS - AI-Native Transport Operating System
 **Document type:** Build Pipeline & Engineering Operations Reference
 **Source of truth:** `AntOS/tooling/`, `AntOS/BUILD_STATUS.md`, `AntOS/docs/operations/`, `AntOS/platform/image/Containerfile`
 **Generated:** 2026-08-25
@@ -52,7 +52,7 @@ flowchart LR
 | `edk2-aarch64` / `AAVMF` | UEFI firmware for aarch64 QEMU | `dnf install -y edk2-aarch64` |
 | `ssh-keygen` | Throwaway SSH key generation | `dnf install -y openssh` |
 | `python3` | Parse `CurrentVesion.json` | `dnf install -y python3` |
-| `qemu-user-static` / binfmt | Cross-arch builds (x86_64 → aarch64) | `dnf install -y qemu-user-static` |
+| `qemu-user-static` / binfmt | Cross-arch builds (x86_64 -> aarch64) | `dnf install -y qemu-user-static` |
 
 ### Source files
 
@@ -71,12 +71,12 @@ flowchart LR
 
 `platform/image/Containerfile` is a multi-stage build based on ADR-0001 (Fedora/rpm-ostree), ADR-0002 (OSTree), ADR-0003 (Qt/QML), ADR-0004 (Smithay).
 
-### Stage 1 — Builder (`quay.io/fedora/fedora:41 AS builder`)
+### Stage 1 - Builder (`quay.io/fedora/fedora:41 AS builder`)
 
 Compiles all AntOS Rust services with Cargo dependency caching:
 
-1. For each crate, copy only `Cargo.toml` first and build a dummy binary → downloads/compiles all external dependencies once.
-2. Remove dummy source, copy real source, rebuild → only the local crate recompiles.
+1. For each crate, copy only `Cargo.toml` first and build a dummy binary -> downloads/compiles all external dependencies once.
+2. Remove dummy source, copy real source, rebuild -> only the local crate recompiles.
 
 Crates built:
 - `antos-shell-compositor` (Smithay Wayland compositor)
@@ -87,7 +87,7 @@ Crates built:
 
 Builder dependencies: `cargo`, `rust`, `libxkbcommon-devel`, `wayland-devel`, `libdrm-devel`, `libgbm-devel`, `pixman-devel`, `pkgconf`, `gcc`.
 
-### Stage 2 — Final bootable image (`quay.io/fedora/fedora-bootc:41`)
+### Stage 2 - Final bootable image (`quay.io/fedora/fedora-bootc:41`)
 
 Installs runtime packages, rebrands as AntOS, installs services and UI.
 
@@ -212,38 +212,38 @@ AntOS uses a phased build where each phase has explicit gate criteria. A phase i
 
 - Each phase has a consolidated gate: `tooling/vm-runner/phase<N>-gate.sh`
 - Sub-slices have individual gates: `tooling/vm-runner/phase<N>-<M>-gate.sh`
-- Full regression: `tooling/vm-runner/antos-full-gate.sh` runs all Phase 0–N gates
+- Full regression: `tooling/vm-runner/antos-full-gate.sh` runs all Phase 0-N gates
 - CI linting: `tooling/ci/antos-ci.sh`
 
 ### 6.2 Phase status (as of v1.2.0 + Phase 21)
 
 | Phase | Status | Gate |
 |---|---|---|
-| 0 — Architecture & Toolchain | Passed | Reproducible minimal image boots in QEMU |
-| 1 — Minimal AntOS Image | Passed | boot/reboot/shutdown stable, rollback works |
-| 2 — Wayland Desktop Foundation | Passed | Usable graphical session |
-| 3 — Design System & Core Shell | Passed | Consistent reusable UI |
-| 4 — AntOS Core APIs | Passed | Contract tests across services |
-| 5 — Secure Action Gateway | Passed | AI/automation cannot bypass gateway |
-| 6 — Command Center | Passed | Useful without AI, no UI freeze on search |
-| 7 — Local AI Foundation | Passed | AI provider removable, privacy gateway enforced |
-| 8 — Explainable System Intelligence | Passed | No fabricated telemetry |
-| 9 — Health / Infrastructure Intelligence | Passed | Monitoring does not destabilize |
-| 10 — Automation | Passed | All privileged actions pass gateway |
-| 11 — Smart Workspaces & Knowledge | Passed | Clear privacy controls |
-| 12 — Security Guardian | Passed | Independent security review |
-| 13 — Developer & Device Ecosystem | Passed | Integrations optional |
-| 14 — Installer & Recovery UX | Passed | Install/update/rollback/recovery tested |
-| 15 — Beta Hardening | Passed | No new architecture, all tests pass |
-| **v1.0 — Baseline** | **Passed** | `antos-full-gate.sh` passes Phase 0–15 |
-| 16 — Interaction & Accessibility | Passed | New input without breaking keyboard/mouse |
-| 17 — Connectivity, Storage & Migration | Passed | P2P sync offline, migration preserves privacy |
-| 18 — Security, Privacy & Trust | Passed | No false positives, AI safety enforced |
-| **v1.1 — Release** | **Passed** | `antos-full-gate.sh` passes Phase 0–18 |
-| 19 — Productivity, Ecosystem & Sustainability | Passed | Privacy-respecting |
-| 20 — Advanced / Futuristic | Passed | Feature flags, architecture/security/ethics review |
-| **v1.2 — Release** | **Passed** | `antos-full-gate.sh` passes Phase 0–20 |
-| 21 — ARM64 / Small Form Factor | Passed | Multi-arch build, aarch64 QEMU, SFF profile |
+| 0 - Architecture & Toolchain | Passed | Reproducible minimal image boots in QEMU |
+| 1 - Minimal AntOS Image | Passed | boot/reboot/shutdown stable, rollback works |
+| 2 - Wayland Desktop Foundation | Passed | Usable graphical session |
+| 3 - Design System & Core Shell | Passed | Consistent reusable UI |
+| 4 - AntOS Core APIs | Passed | Contract tests across services |
+| 5 - Secure Action Gateway | Passed | AI/automation cannot bypass gateway |
+| 6 - Command Center | Passed | Useful without AI, no UI freeze on search |
+| 7 - Local AI Foundation | Passed | AI provider removable, privacy gateway enforced |
+| 8 - Explainable System Intelligence | Passed | No fabricated telemetry |
+| 9 - Health / Infrastructure Intelligence | Passed | Monitoring does not destabilize |
+| 10 - Automation | Passed | All privileged actions pass gateway |
+| 11 - Smart Workspaces & Knowledge | Passed | Clear privacy controls |
+| 12 - Security Guardian | Passed | Independent security review |
+| 13 - Developer & Device Ecosystem | Passed | Integrations optional |
+| 14 - Installer & Recovery UX | Passed | Install/update/rollback/recovery tested |
+| 15 - Beta Hardening | Passed | No new architecture, all tests pass |
+| **v1.0 - Baseline** | **Passed** | `antos-full-gate.sh` passes Phase 0-15 |
+| 16 - Interaction & Accessibility | Passed | New input without breaking keyboard/mouse |
+| 17 - Connectivity, Storage & Migration | Passed | P2P sync offline, migration preserves privacy |
+| 18 - Security, Privacy & Trust | Passed | No false positives, AI safety enforced |
+| **v1.1 - Release** | **Passed** | `antos-full-gate.sh` passes Phase 0-18 |
+| 19 - Productivity, Ecosystem & Sustainability | Passed | Privacy-respecting |
+| 20 - Advanced / Futuristic | Passed | Feature flags, architecture/security/ethics review |
+| **v1.2 - Release** | **Passed** | `antos-full-gate.sh` passes Phase 0-20 |
+| 21 - ARM64 / Small Form Factor | Passed | Multi-arch build, aarch64 QEMU, SFF profile |
 
 ### 6.3 Status definitions
 
@@ -267,7 +267,7 @@ AntOS uses **OSTree via rpm-ostree/bootc** for atomic, image-based system deploy
 - Deployments are content-addressed, immutable trees stored in `/ostree/repo`.
 - A/B boot entries allow automatic fallback on failed boot.
 - Health verification runs before a deployment is made default.
-- Rollback cannot be blocked by a running application — the boot loader owns the previous entry.
+- Rollback cannot be blocked by a running application - the boot loader owns the previous entry.
 
 ### 7.2 Operator commands
 
@@ -301,15 +301,15 @@ End-to-end rollback is tested via `tooling/vm-runner/test-rollback.sh` (Phase 1 
 
 ### 8.1 Recovery target
 
-`platform/image/config/antos-recovery.target` — a dedicated systemd target for recovery mode.
+`platform/image/config/antos-recovery.target` - a dedicated systemd target for recovery mode.
 
 ### 8.2 Recovery shell
 
-`antos-recovery-shell.service` + `/usr/local/bin/antos-recovery-shell` — a serial console recovery shell enabled at boot.
+`antos-recovery-shell.service` + `/usr/local/bin/antos-recovery-shell` - a serial console recovery shell enabled at boot.
 
 ### 8.3 Rollback test preparation
 
-`/usr/local/bin/antos-prepare-rollback-test` — prepares the system for rollback testing.
+`/usr/local/bin/antos-prepare-rollback-test` - prepares the system for rollback testing.
 
 ### 8.4 First-boot wizard
 
@@ -326,7 +326,7 @@ If no `CONSOLE_PASSWORD` was supplied at build time, the `antos` account is lock
 1. Update `CurrentVesion.json` if the version changed.
 2. Update `platform/image/Containerfile` or `platform/image/branding/` for any branding changes.
 3. Run `tooling/ci/antos-ci.sh` to lint all scripts.
-4. Ensure build host has all prerequisites (§2).
+4. Ensure build host has all prerequisites (sec. 2).
 
 ### 9.2 Rebuild flow
 
@@ -357,11 +357,11 @@ The running kernel reports `6.17.8-100.fc41.x86_64` via `uname -r`. This is a bu
 
 ### 10.1 CI script
 
-`tooling/ci/antos-ci.sh` — lints all shell scripts and validates structure.
+`tooling/ci/antos-ci.sh` - lints all shell scripts and validates structure.
 
 ### 10.2 CI workflow
 
-`.github/workflows/ci.yml` — GitHub Actions CI configuration.
+`.github/workflows/ci.yml` - GitHub Actions CI configuration.
 
 ### 10.3 Cross-architecture CI
 
@@ -369,7 +369,7 @@ Per ADR-0021, CI needs either:
 - An aarch64 runner, or
 - `qemu-user-static` / binfmt support for periodic ARM builds.
 
-**Known blocker:** aarch64 cross-build on WSL is blocked by upstream `bootc-image-builder` / `qemu-user-static` issues. The validated path is: x86_64 container build → native ARM BIB → ARM VM smoke test.
+**Known blocker:** aarch64 cross-build on WSL is blocked by upstream `bootc-image-builder` / `qemu-user-static` issues. The validated path is: x86_64 container build -> native ARM BIB -> ARM VM smoke test.
 
 ---
 
@@ -455,14 +455,14 @@ antos-build-info
 | "Fedora" strings appear in ISO | Branding not fully patched | Grep ISO contents and patch `isolinux.cfg`, `grub.cfg`, `.discinfo`, `media.repo` |
 | Compositor not rendering visible frame | QEMU has no connected DRM connector | Expected in QEMU; headless fallback is used. Use virtio-gpu + VNC/SPICE for visible-pixel testing |
 | AAVMF firmware not found | `edk2-aarch64` not installed on host | `dnf install -y edk2-aarch64` |
-| `uname -r` shows `fc41` | Kernel version string is build-time | Acceptable; see §9.3 |
+| `uname -r` shows `fc41` | Kernel version string is build-time | Acceptable; see sec. 9.3 |
 
 ---
 
 ## 14. Cross-References
 
-- Architecture: see **Document A — Architecture**
-- Full technical reference: see **Document C — Full Technical Reference**
+- Architecture: see **Document A - Architecture**
+- Full technical reference: see **Document C - Full Technical Reference**
 - Build status: `AntOS/BUILD_STATUS.md`
 - Phase build plan: `AntOS/docs/operations/phase-build-plan.md`
 - Feature/ISO rebuild playbook: `AntOS/docs/operations/feature-and-iso-rebuild-playbook.md`
