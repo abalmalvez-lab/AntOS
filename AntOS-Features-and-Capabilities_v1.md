@@ -53,28 +53,34 @@ AntOS treats the OS as a **trusted transport fabric for intelligence**. Every fl
 
 ```mermaid
 flowchart LR
-    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:20
-    classDef intent fill:#4361ee,stroke:#3a56d4,color:#fff,rx:10
-    classDef context fill:#00b4d8,stroke:#0096c7,color:#fff,rx:10
-    classDef event fill:#9b59b6,stroke:#8e44ad,color:#fff,rx:10
-    classDef action fill:#f39c12,stroke:#d68910,color:#fff,rx:10
-    classDef knowledge fill:#2ecc71,stroke:#27ae60,color:#fff,rx:10
+    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
+    classDef intent fill:#4361ee,stroke:#3a56d4,color:#fff
+    classDef context fill:#00b4d8,stroke:#0096c7,color:#fff
+    classDef event fill:#9b59b6,stroke:#8e44ad,color:#fff
+    classDef action fill:#f39c12,stroke:#d68910,color:#fff
+    classDef knowledge fill:#2ecc71,stroke:#27ae60,color:#fff
 
     subgraph P1["Intent Transport"]
-        I1([User Goal]):::terminal --> I2(Intent Resolver):::intent
+        I1([User Goal]) --> I2(Intent Resolver)
     end
     subgraph P2["Context Transport"]
-        C1([Authorized Data]):::terminal --> C2(Context Engine):::context
+        C1([Authorized Data]) --> C2(Context Engine)
     end
     subgraph P3["Event Transport"]
-        E1([System Events]):::terminal --> E2(Event Bus):::event
+        E1([System Events]) --> E2(Event Bus)
     end
     subgraph P4["Action Transport"]
-        A1([Authorized Action]):::terminal --> A2(Secure Action Gateway):::action
+        A1([Authorized Action]) --> A2(Secure Action Gateway)
     end
     subgraph P5["Knowledge Transport"]
-        K1([Search + Timeline]):::terminal --> K2(Knowledge Layer):::knowledge
+        K1([Search + Timeline]) --> K2(Knowledge Layer)
     end
+    class I1,C1,E1,A1,K1 terminal
+    class I2 intent
+    class C2 context
+    class E2 event
+    class A2 action
+    class K2 knowledge
 ```
 
 | Plane | Direction | What It Carries |
@@ -91,45 +97,54 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    classDef shellLayer fill:#7209b7,stroke:#560bad,color:#fff,rx:10
-    classDef uxLayer fill:#b5179e,stroke:#9b1160,color:#fff,rx:10
-    classDef aiLayer fill:#00b4d8,stroke:#0096c7,color:#fff,rx:10
-    classDef gatewayLayer fill:#f39c12,stroke:#d68910,color:#fff,rx:10
-    classDef servicesLayer fill:#2ecc71,stroke:#27ae60,color:#fff,rx:10
-    classDef sandboxLayer fill:#95a5a6,stroke:#7f8c8d,color:#fff,rx:10
-    classDef osLayer fill:#4361ee,stroke:#3a56d4,color:#fff,rx:10
-    classDef atomicLayer fill:#e74c3c,stroke:#c0392b,color:#fff,rx:10
-    classDef kernelLayer fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:10
+    classDef shellLayer fill:#7209b7,stroke:#560bad,color:#fff
+    classDef uxLayer fill:#b5179e,stroke:#9b1160,color:#fff
+    classDef aiLayer fill:#00b4d8,stroke:#0096c7,color:#fff
+    classDef gatewayLayer fill:#f39c12,stroke:#d68910,color:#fff
+    classDef servicesLayer fill:#2ecc71,stroke:#27ae60,color:#fff
+    classDef sandboxLayer fill:#95a5a6,stroke:#7f8c8d,color:#fff
+    classDef osLayer fill:#4361ee,stroke:#3a56d4,color:#fff
+    classDef atomicLayer fill:#e74c3c,stroke:#c0392b,color:#fff
+    classDef kernelLayer fill:#1a1a2e,stroke:#0f0f1e,color:#fff
 
     subgraph S1["AntOS Shell"]
-        S["Desktop - Workspaces - Command Center - Panels - Notifications"]:::shellLayer
+        S["Desktop - Workspaces - Command Center - Panels - Notifications"]
     end
     subgraph S2["User Experience Services"]
-        U["Search - Timeline - Clipboard - Settings - Files - Accessibility"]:::uxLayer
+        U["Search - Timeline - Clipboard - Settings - Files - Accessibility"]
     end
     subgraph S3["System Intelligence Layer"]
-        A["Context - AI Router - Reasoning - Agents - Predictions - RCA"]:::aiLayer
+        A["Context - AI Router - Reasoning - Agents - Predictions - RCA"]
     end
     subgraph S4["Secure Action Gateway"]
-        G["Capability - Policy - Consent - Impact - Audit - Undo"]:::gatewayLayer
+        G["Capability - Policy - Consent - Impact - Audit - Undo"]
     end
     subgraph S5["AntOS Core Services"]
-        C["Health - Security - Network - Devices - Automation - Knowledge"]:::servicesLayer
+        C["Health - Security - Network - Devices - Automation - Knowledge"]
     end
     subgraph S6["Application / Agent Sandbox"]
-        X["Flatpak - Portals - Rootless Containers - Agent Capabilities"]:::sandboxLayer
+        X["Flatpak - Portals - Rootless Containers - Agent Capabilities"]
     end
     subgraph S7["OS Services"]
-        O["systemd - NetworkManager - PipeWire - BlueZ - D-Bus"]:::osLayer
+        O["systemd - NetworkManager - PipeWire - BlueZ - D-Bus"]
     end
     subgraph S8["Atomic / Image-Based OS"]
-        T["Updates - Deployments - Recovery - Btrfs - Boot"]:::atomicLayer
+        T["Updates - Deployments - Recovery - Btrfs - Boot"]
     end
     subgraph S9["Linux Kernel"]
-        K["CPU - Memory - GPU - Storage - Network - USB - Input"]:::kernelLayer
+        K["CPU - Memory - GPU - Storage - Network - USB - Input"]
     end
 
     S --> U --> A --> G --> C --> X --> O --> T --> K
+    class S shellLayer
+    class U uxLayer
+    class A aiLayer
+    class G gatewayLayer
+    class C servicesLayer
+    class X sandboxLayer
+    class O osLayer
+    class T atomicLayer
+    class K kernelLayer
 ```
 
 The stack is strictly layered - each layer may only depend on layers below it. The Secure Action Gateway is the **only** path from the intelligence layer to privileged OS services.
@@ -178,19 +193,24 @@ The **only path** from intelligence and automation to privileged OS actions.
 
 ```mermaid
 flowchart LR
-    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:20
-    classDef gate fill:#f39c12,stroke:#d68910,color:#fff,rx:10
+    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
+    classDef gate fill:#f39c12,stroke:#d68910,color:#fff
     classDef decision fill:#fff,stroke:#f39c12,color:#212529
     classDef success fill:#2ecc71,stroke:#27ae60,color:#fff
     classDef danger fill:#e74c3c,stroke:#c0392b,color:#fff
 
-    req([Action Request]):::terminal --> cap(Capability Check):::gate
-    cap --> pol{Policy Match}:::decision
-    pol -->|Allow| con(Consent Check):::gate
-    pol -->|Deny| blocked([Blocked + Audited]):::danger
-    con --> imp(Impact Preview):::gate
-    imp --> aud(Audit Log):::gate
-    aud --> exec([Execute + Undo Ready]):::success
+    req([Action Request]) --> cap(Capability Check)
+    cap --> pol{Policy Match}
+    pol -->|Allow| con(Consent Check)
+    pol -->|Deny| blocked([Blocked + Audited])
+    con --> imp(Impact Preview)
+    imp --> aud(Audit Log)
+    aud --> exec([Execute + Undo Ready])
+    class req terminal
+    class cap,con,imp,aud gate
+    class pol decision
+    class blocked danger
+    class exec success
 ```
 
 ### Six enforcement gates
@@ -277,18 +297,23 @@ Event Bus, Context Engine, Timeline, Backup, Update Intelligence, Energy Managem
 
 ```mermaid
 flowchart LR
-    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:20
-    classDef process fill:#4361ee,stroke:#3a56d4,color:#fff,rx:10
+    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
+    classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
     classDef decision fill:#fff,stroke:#4361ee,color:#212529
     classDef success fill:#2ecc71,stroke:#27ae60,color:#fff
     classDef danger fill:#e74c3c,stroke:#c0392b,color:#fff
 
-    new([New Image]):::terminal --> deploy(Deploy as B Entry):::process
-    deploy --> boot(Boot New Entry):::process
-    boot --> health{Health Check}:::decision
-    health -->|Pass| active([Set Default]):::success
-    health -->|Fail| rollback(Auto-Fallback to A):::danger
-    rollback --> prev([Previous Entry Boots]):::success
+    new([New Image]) --> deploy(Deploy as B Entry)
+    deploy --> boot(Boot New Entry)
+    boot --> health{Health Check}
+    health -->|Pass| active([Set Default])
+    health -->|Fail| rollback(Auto-Fallback to A)
+    rollback --> prev([Previous Entry Boots])
+    class new terminal
+    class deploy,boot process
+    class health decision
+    class active,prev success
+    class rollback danger
 ```
 
 | Feature | Detail |
@@ -348,15 +373,19 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:20
-    classDef process fill:#4361ee,stroke:#3a56d4,color:#fff,rx:10
-    classDef artifact fill:#00b4d8,stroke:#0096c7,color:#fff,rx:10
-    classDef success fill:#2ecc71,stroke:#27ae60,color:#fff,rx:10
+    classDef terminal fill:#1a1a2e,stroke:#0f0f1e,color:#fff
+    classDef process fill:#4361ee,stroke:#3a56d4,color:#fff
+    classDef artifact fill:#00b4d8,stroke:#0096c7,color:#fff
+    classDef success fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    cf([Containerfile]):::terminal -->|podman build| ci(Container Image):::process
-    ci -->|bootc-image-builder| qcow2(qcow2 Disk Image):::artifact
-    qcow2 -->|run-qemu.sh| qemu(QEMU Boot):::process
-    qemu --> gates([Phase Gate Scripts]):::success
+    cf([Containerfile]) -->|podman build| ci(Container Image)
+    ci -->|bootc-image-builder| qcow2(qcow2 Disk Image)
+    qcow2 -->|run-qemu.sh| qemu(QEMU Boot)
+    qemu --> gates([Phase Gate Scripts])
+    class cf terminal
+    class ci,qemu process
+    class qcow2 artifact
+    class gates success
 ```
 
 | Feature | Detail |
