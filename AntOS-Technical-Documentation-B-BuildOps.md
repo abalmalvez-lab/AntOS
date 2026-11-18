@@ -21,10 +21,10 @@ flowchart TD
     classDef artifact fill:#00b4d8,stroke:#0096c7,color:#fff
     classDef success fill:#2ecc71,stroke:#27ae60,color:#fff
 
-    cf([Containerfile]) -->|podman build| ci(Container Image)
-    ci -->|bootc-image-builder| qcow2(qcow2 Disk Image)
+    cf([Containerfile]) -->|podman build| ci(Container<br/>Image)
+    ci -->|bootc-image-builder| qcow2(qcow2 Disk<br/>Image)
     qcow2 -->|run-qemu.sh| qemu(QEMU Boot)
-    qemu --> gates([Phase Gate Scripts])
+    qemu --> gates([Phase Gate<br/>Scripts])
     class cf terminal
     class ci,qemu process
     class qcow2 artifact
