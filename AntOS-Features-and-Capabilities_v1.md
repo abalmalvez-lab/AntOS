@@ -1,11 +1,11 @@
-# AntOS — Features & Capabilities
+# AntOS - Features & Capabilities
 
-> **AntOS** — the **AI-Native Transport Operating System**
+> **AntOS** - the **AI-Native Transport Operating System**
 >
 > A modern, local-first, secure operating environment that understands user intent, transports trusted context across system boundaries, reasons about system state, automates approved actions, explains decisions, and recovers safely when something goes wrong.
 
 **Version:** 1.0.0 (product) | Fedora 41 base | Kernel 6.17.8
-**Release gate:** v1.2.0 (Phases 0–20 passed) + Phase 21 (ARM64/SFF) passed
+**Release gate:** v1.2.0 (Phases 0-20 passed) + Phase 21 (ARM64/SFF) passed
 **Architecture:** x86_64 (primary), aarch64 (validated in QEMU)
 
 ---
@@ -33,7 +33,7 @@ These principles are binding on every implementation decision.
 | ID | Principle | What It Means in Practice |
 |---|---|---|
 | P1 | **Local First** | Diagnostics, search, monitoring, settings, automations, and basic assistant work without Internet. Cloud AI is optional. |
-| P2 | **AI Is a System Capability** | AI is accessible throughout the shell and services via standard interfaces — not just a chat window. |
+| P2 | **AI Is a System Capability** | AI is accessible throughout the shell and services via standard interfaces - not just a chat window. |
 | P3 | **Intent Over Navigation** | Users state objectives ("Prefer Ethernet when available") instead of clicking through settings pages. |
 | P4 | **Explainability** | Users can ask "Why is this enabled?", "What changed since yesterday?", "Why did the network disconnect?" |
 | P5 | **Reversibility** | Important changes support preview, snapshot, rollback, undo, or recovery wherever possible. |
@@ -42,7 +42,7 @@ These principles are binding on every implementation decision.
 | P8 | **Modular Architecture** | No feature requires all of AntOS to be rebuilt or understood at once. |
 | P9 | **Observability by Design** | Every privileged action, automation, AI decision, failure, and service transition produces structured logs. |
 | P10 | **Graceful Degradation** | If AI is down, the OS still works. If cloud is down, local functions remain. If a nonessential module crashes, the shell survives. |
-| P11 | **Beautiful but Functional UI** | Visual effects support hierarchy and comprehension — never decoration that harms readability. |
+| P11 | **Beautiful but Functional UI** | Visual effects support hierarchy and comprehension - never decoration that harms readability. |
 | P12 | **Hardware-Aware Intelligence** | AntOS understands CPU, GPU, RAM, NPU, storage, battery, thermals, network, and model capacity. |
 
 ---
@@ -79,10 +79,10 @@ flowchart LR
 
 | Plane | Direction | What It Carries |
 |---|---|---|
-| Intent Transport | User → System | Natural-language goals → structured system requests |
-| Context Transport | System → AI/Apps | Minimum authorized context required for reasoning |
-| Event Transport | System → Intelligence | Structured kernel/service/device events |
-| Action Transport | Intelligence → OS | Authorized actions through the Secure Action Gateway |
+| Intent Transport | User -> System | Natural-language goals -> structured system requests |
+| Context Transport | System -> AI/Apps | Minimum authorized context required for reasoning |
+| Event Transport | System -> Intelligence | Structured kernel/service/device events |
+| Action Transport | Intelligence -> OS | Authorized actions through the Secure Action Gateway |
 | Knowledge Transport | Bidirectional | Search, timeline, semantic relationships, explanations |
 
 ---
@@ -102,37 +102,37 @@ flowchart TD
     classDef kernelLayer fill:#1a1a2e,stroke:#0f0f1e,color:#fff,rx:10
 
     subgraph S1["AntOS Shell"]
-        S["Desktop • Workspaces • Command Center • Panels • Notifications"]:::shellLayer
+        S["Desktop - Workspaces - Command Center - Panels - Notifications"]:::shellLayer
     end
     subgraph S2["User Experience Services"]
-        U["Search • Timeline • Clipboard • Settings • Files • Accessibility"]:::uxLayer
+        U["Search - Timeline - Clipboard - Settings - Files - Accessibility"]:::uxLayer
     end
     subgraph S3["System Intelligence Layer"]
-        A["Context • AI Router • Reasoning • Agents • Predictions • RCA"]:::aiLayer
+        A["Context - AI Router - Reasoning - Agents - Predictions - RCA"]:::aiLayer
     end
     subgraph S4["Secure Action Gateway"]
-        G["Capability • Policy • Consent • Impact • Audit • Undo"]:::gatewayLayer
+        G["Capability - Policy - Consent - Impact - Audit - Undo"]:::gatewayLayer
     end
     subgraph S5["AntOS Core Services"]
-        C["Health • Security • Network • Devices • Automation • Knowledge"]:::servicesLayer
+        C["Health - Security - Network - Devices - Automation - Knowledge"]:::servicesLayer
     end
     subgraph S6["Application / Agent Sandbox"]
-        X["Flatpak • Portals • Rootless Containers • Agent Capabilities"]:::sandboxLayer
+        X["Flatpak - Portals - Rootless Containers - Agent Capabilities"]:::sandboxLayer
     end
     subgraph S7["OS Services"]
-        O["systemd • NetworkManager • PipeWire • BlueZ • D-Bus"]:::osLayer
+        O["systemd - NetworkManager - PipeWire - BlueZ - D-Bus"]:::osLayer
     end
     subgraph S8["Atomic / Image-Based OS"]
-        T["Updates • Deployments • Recovery • Btrfs • Boot"]:::atomicLayer
+        T["Updates - Deployments - Recovery - Btrfs - Boot"]:::atomicLayer
     end
     subgraph S9["Linux Kernel"]
-        K["CPU • Memory • GPU • Storage • Network • USB • Input"]:::kernelLayer
+        K["CPU - Memory - GPU - Storage - Network - USB - Input"]:::kernelLayer
     end
 
     S --> U --> A --> G --> C --> X --> O --> T --> K
 ```
 
-The stack is strictly layered — each layer may only depend on layers below it. The Secure Action Gateway is the **only** path from the intelligence layer to privileged OS services.
+The stack is strictly layered - each layer may only depend on layers below it. The Secure Action Gateway is the **only** path from the intelligence layer to privileged OS services.
 
 ---
 
@@ -142,7 +142,7 @@ The stack is strictly layered — each layer may only depend on layers below it.
 
 | Feature | Detail |
 |---|---|
-| Library | Smithay 0.7 (Rust) — chosen for memory safety and composability (ADR-0004) |
+| Library | Smithay 0.7 (Rust) - chosen for memory safety and composability (ADR-0004) |
 | Language | Rust 2021 edition (min 1.80.1) |
 | Protocols | `wl_compositor`, `wl_shm`, `xdg_wm_base`, `wl_output`, `wl_seat` |
 | Input | Keyboard and pointer via `wl_seat` |
@@ -208,17 +208,17 @@ flowchart LR
 
 | Risk | Behavior | Example |
 |---|---|---|
-| R0 | Trivial — auto-allow | `org.antos.Shell1.Ping` |
-| R1–R3 | Low to medium — contextual | Varies by capability |
-| R4 | High — prompt user | `org.antos.capability.install.update` |
-| R5 | Destructive — deny by default | `org.antos.capability.format.disk` |
+| R0 | Trivial - auto-allow | `org.antos.Shell1.Ping` |
+| R1-R3 | Low to medium - contextual | Varies by capability |
+| R4 | High - prompt user | `org.antos.capability.install.update` |
+| R5 | Destructive - deny by default | `org.antos.capability.format.disk` |
 
 ### Components
 
-- `antos-policyd` — policy daemon exposing `org.antos.Policy1` on D-Bus
-- `antos-policy-gateway` — gateway service
-- `contracts/capabilities/policy-schema.json` — JSON Schema for policy rules
-- `contracts/capabilities/default-policy.json` — default rules with risk classes
+- `antos-policyd` - policy daemon exposing `org.antos.Policy1` on D-Bus
+- `antos-policy-gateway` - gateway service
+- `contracts/capabilities/policy-schema.json` - JSON Schema for policy rules
+- `contracts/capabilities/default-policy.json` - default rules with risk classes
 
 ---
 
@@ -230,14 +230,14 @@ flowchart LR
 | Provider abstraction | Pluggable provider manifest (`intelligence/providers/manifest.json`) |
 | First provider | Ollama (local, offline) |
 | Cloud AI | Optional; not a hard dependency for any core OS function (P1, P10) |
-| Policy enforcement | `CanUseProvider` gate — checks whether a provider may be used (Phase 8) |
+| Policy enforcement | `CanUseProvider` gate - checks whether a provider may be used (Phase 8) |
 | Privacy gateway | No AI access to raw sensitive events without authorization |
 | Client | `antos-list-providers` CLI |
 
 ### What makes AntOS AI "native"
 
 - AI is accessible via D-Bus interfaces, not just a chat window (P2)
-- AI consumes structured OS context through approved APIs — no screen scraping or shell access (P6)
+- AI consumes structured OS context through approved APIs - no screen scraping or shell access (P6)
 - AI-driven actions pass through the Secure Action Gateway like any other caller (P6, P9)
 - Every AI decision is explainable, auditable, and reversible where possible (P4, P5, P9)
 - If AI is unavailable, the OS remains fully usable (P10)
@@ -246,7 +246,7 @@ flowchart LR
 
 ## 7. Core Services Catalog
 
-15 services implemented and gate-verified across Phases 5–20.
+15 services implemented and gate-verified across Phases 5-20.
 
 | Service | Phase | D-Bus / Interface | Client Binary | What It Does |
 |---|---|---|---|---|
@@ -294,10 +294,10 @@ flowchart LR
 | Feature | Detail |
 |---|---|
 | Technology | OSTree via rpm-ostree / bootc (ADR-0002) |
-| Model | A/B boot entries — atomic, image-based deployments |
+| Model | A/B boot entries - atomic, image-based deployments |
 | Storage | Content-addressed, immutable trees in `/ostree/repo` |
 | Health verification | Runs before a deployment is made default |
-| Rollback | Boot-loader-owned — cannot be blocked by a running application |
+| Rollback | Boot-loader-owned - cannot be blocked by a running application |
 | Read-only | Deployments are signed and read-only, reducing runtime tampering |
 | Operator commands | `bootc status`, `bootc rollback` |
 | Verification | `tooling/rollback/verify-rollback.sh`, `tooling/vm-runner/test-rollback.sh` |
@@ -334,10 +334,10 @@ flowchart LR
 | Feature | Detail |
 |---|---|
 | Installer framework | Anaconda addon (`com_antos_account`) with GUI spoke |
-| First-boot wizard | `antos-first-boot.service` — interactively collects password on first boot if not pre-set |
+| First-boot wizard | `antos-first-boot.service` - interactively collects password on first boot if not pre-set |
 | Disk partitioning | User-controlled partitioning and encryption |
-| Recovery target | `antos-recovery.target` — dedicated systemd recovery mode |
-| Recovery shell | `antos-recovery-shell.service` — serial console recovery shell enabled at boot |
+| Recovery target | `antos-recovery.target` - dedicated systemd recovery mode |
+| Recovery shell | `antos-recovery-shell.service` - serial console recovery shell enabled at boot |
 | Migration | Migration intelligence with privacy scans |
 | Support bundles | Support bundle generation for troubleshooting |
 | Rollback test prep | `/usr/local/bin/antos-prepare-rollback-test` |
@@ -361,7 +361,7 @@ flowchart LR
 
 | Feature | Detail |
 |---|---|
-| Build approach | Bootable container → qcow2 disk image via bootc-image-builder |
+| Build approach | Bootable container -> qcow2 disk image via bootc-image-builder |
 | Base image | `quay.io/fedora/fedora-bootc:41` (multi-arch) |
 | Builder | `quay.io/fedora/fedora:41` with Rust toolchain |
 | Cargo caching | Dummy build downloads deps once; source changes only recompile local crate |
@@ -369,7 +369,7 @@ flowchart LR
 | QEMU validation | Every phase must boot and pass gates in QEMU before being marked passed |
 | ISO build | `build-iso.sh --arch <arch>` produces installable ISO with AntOS branding |
 | CI | `tooling/ci/antos-ci.sh` lints all scripts; GitHub Actions workflow |
-| Cross-build | x86_64 → aarch64 via qemu-user-static/binfmt (blocked on WSL; use native ARM host) |
+| Cross-build | x86_64 -> aarch64 via qemu-user-static/binfmt (blocked on WSL; use native ARM host) |
 
 ### Build artifacts
 
@@ -423,10 +423,10 @@ When AntOS detects a small-form-factor device (via device-tree on ARM SBCs, DMI 
 ### D-Bus namespaces
 
 All AntOS D-Bus interfaces live under `org.antos.*`:
-- `org.antos.Shell1` — Shell API
-- `org.antos.Policy1` — Secure Action Gateway
-- `org.antos.CommandCenter1` — Search service
-- `org.antos.Intelligence1` — AI provider service
+- `org.antos.Shell1` - Shell API
+- `org.antos.Policy1` - Secure Action Gateway
+- `org.antos.CommandCenter1` - Search service
+- `org.antos.Intelligence1` - AI provider service
 
 ---
 
@@ -438,7 +438,7 @@ All AntOS D-Bus interfaces live under `org.antos.*`:
 | Containers | Podman rootless by default |
 | Integrations | Flatpak, Podman, Ollama, smart-home, Zigbee, SSH, NAS |
 | SDK | Rust, Python, and example integrations (`sdk/`) |
-| Agent packages | Planned (ADR-0015) — agent package format with capability manifests |
+| Agent packages | Planned (ADR-0015) - agent package format with capability manifests |
 
 ---
 
@@ -451,7 +451,7 @@ All AntOS D-Bus interfaces live under `org.antos.*`:
 | Build version | 1 | `CurrentVesion.json` |
 | Fedora base | 41 | `Containerfile`, `os-release` |
 | Kernel | 6.17.8-100.fc41.x86_64 | Fedora 41 bootc base |
-| Latest gate | v1.2.0 (Phases 0–20) + Phase 21 | `BUILD_STATUS.md` |
+| Latest gate | v1.2.0 (Phases 0-20) + Phase 21 | `BUILD_STATUS.md` |
 | Build info | `/usr/share/antos/build-info.json` (label, version, commit, timestamp) | Containerfile |
 | Query | `antos-build-info` | CLI client |
 
@@ -463,10 +463,10 @@ All 21 phases passed with verified gates.
 
 | Milestone | Phases | Status |
 |---|---|---|
-| v1.0 — Baseline | 0–15 | Passed |
-| v1.1 — Release | 0–18 | Passed |
-| v1.2 — Release | 0–20 | Passed |
-| Phase 21 — ARM64/SFF | 21.1–21.4 | Passed |
+| v1.0 - Baseline | 0-15 | Passed |
+| v1.1 - Release | 0-18 | Passed |
+| v1.2 - Release | 0-20 | Passed |
+| Phase 21 - ARM64/SFF | 21.1-21.4 | Passed |
 
 ### Phase summary
 
@@ -552,6 +552,6 @@ These are explicit non-goals, not limitations to be "fixed":
 | ADR index | `AntOS/docs/adr/README.md` |
 | Threat model | `AntOS/docs/threat-models/initial-threat-model.md` |
 | Coding standards | `AntOS/docs/coding-standards.md` |
-| Document A — Architecture | `AntOS-Technical-Documentation-A-Architecture.md` |
-| Document B — Build & Ops | `AntOS-Technical-Documentation-B-BuildOps.md` |
-| Document C — Full Reference | `AntOS-Technical-Documentation-C-FullReference.md` |
+| Document A - Architecture | `AntOS-Technical-Documentation-A-Architecture.md` |
+| Document B - Build & Ops | `AntOS-Technical-Documentation-B-BuildOps.md` |
+| Document C - Full Reference | `AntOS-Technical-Documentation-C-FullReference.md` |
