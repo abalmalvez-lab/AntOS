@@ -59,7 +59,7 @@ A Linux-based, Wayland-native, atomic/rollback-capable operating environment tha
 | Version | 1.0.0 | `CurrentVesion.json` |
 | OS Name | AntOS | `CurrentVesion.json` |
 | Build Version | 1 | `CurrentVesion.json` |
-| Release Date | 2024-08-25 | `CurrentVesion.json` |
+| Release Date | 2026-08-25 | `CurrentVesion.json` |
 | Fedora base | 41 | `Containerfile`, `os-release` |
 | Kernel | 6.17.8-100.fc41.x86_64 | Fedora 41 bootc base |
 | Latest release gate | v1.2.0 (Phase 0-20) + Phase 21 | `BUILD_STATUS.md` |
@@ -796,7 +796,7 @@ Not Started -> In Progress -> Blocked -> Passed (all gate criteria verified and 
   "Version": "1.0.0",
   "OSName": "AntOS",
   "BuildVersion": 1,
-  "ReleaseDate": "2024-08-25"
+  "ReleaseDate": "2026-08-25"
 }
 ```
 
